@@ -1,6 +1,9 @@
     body{
       font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     }
+    .con_right_list li a:hover{
+      color: red;
+    }
     .navbar-nav li a:hover{
       background-color: #fff;
     }
