@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="" />
+    <title>首页</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/header.css"> 
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+  </head>
+<body class="homepage">
+
+<!--导航栏开始-->
+<header class="qs-header">
+    <nav class="collapse navbar-collapse">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">趣学教育</a> 
+      </div>
+      <ul class="nav navbar-nav navbar-letf">
+        <li class=""><a href="#">首页</a></li>          
+        <li class=""><a href="#">最新资讯</a></li>
+        <li class=""><a href="#">找老师</a></li>
+        <li class=""><a href="#">看直播</a></li>  
+        <li class=""><a href="#">选课程</a></li>
+      </ul>
+      <form class="navbar-form pull-right visible-lg" action="http://www.qswangxiao.com/search" method="get">
+        <div class="form-group">
+          <input class="form-control" placeholder="请输入搜索的内容" >
+          <button class="button glyphicon glyphicon-search"></button>
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right"> 
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li> 
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li> 
+      </ul> 
+    </div>
+    </nav>
+</header>
+<!--导航栏结束-->
+
+<!-- 轮播图开始 -->
+<div id="myCarousel" class="carousel slide">
+    <!-- 轮播（Carousel）指标 -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>   
+    <!-- 轮播（Carousel）项目 -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="./_files/08593241ff9f302195.jpg" alt="First slide">
+        </div>
+        <div class="item">
+            <img src="./_files/15102959fe59682358.jpg" alt="Second slide">
+        </div>
+        <div class="item">
+            <img src="./_files/150315354e21860484.jpg" alt="Third slide">
+        </div>
+    </div>
+</div>
+<script>
+$(function(){
+    
+        $('#myCarousel').carousel({
+          interval: 6000
+          });
+    });
+</script>
+<!-- 轮播图结束 -->
+
+<!-- 最新资讯开始 -->
+
+<div class="qs-panel-title">最新资讯<small>NEWS</small></div>
+
+
+<div class="InformationFigure">
+<div id="myCarousel1" class="carousel slide">
+    <!-- 轮播（Carousel）指标 -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel1" data-slide-to="1"></li>
+        <li data-target="#myCarousel1" data-slide-to="2"></li>
+    </ol>   
+    <!-- 轮播（Carousel）项目 -->
+    <div class="carousel-inner" >
+      
+        <div class="item active">
+            <a href="">
+              <img  src="./_files/1.jpg" alt="First slide">
+              <div class="carousel-caption">高考锦囊 1</div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="">
+              <img  src="./_files/2.jpg" alt="Second slide">
+              <div class="carousel-caption">高考锦囊 2</div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="">
+              <img  src="./_files/xiao.jpg" alt="Third slide">
+              <div class="carousel-caption">高考锦囊 3</div>
+            </a>
+        </div>
+    </div>
+</div>
+<ul class="list-group">
+    <a href="#">
+      <li ">俞敏洪：中国正处在巨大转型期，这三点帮你培养出优秀孩子！
+        <span class="badge">2017/5/23</span>
+      </li>
+    </a>
+    <a href="#">
+      <li >高考锦囊：巧拟作文标题的6大绝招！
+        <span class="badge">2017/5/23</span>
+      </li>
+    </a>
+    <a href="#">
+      <li >急啊！高考越来越近我却学不进去，怎么办？
+        <span class="badge">2017/5/23</span>
+      </li>
+    </a>
+    <a href="#">
+      <li>高考锦囊：巧拟作文标题的6大绝招！
+        <span class="badge">2017/5/23</span>
+      </li>
+    </a>
+    <a href="#">
+      <li >掌握了这40个细节，再也不愁怎么鼓励学生了
+        <span class="badge">2017/5/23</span>
+      </li>
+    </a>
+    <a href="#">
+      <li >掌握了这40个细节，再也不愁怎么鼓励学生了
+        <span class="badge">2017/5/23</span>
+      </li>
+    </a>
+</ul>
+</div>
+<script>
+$(function(){
+    
+        $('#myCarousel1').carousel({
+          interval: 4000
+          });
+    });
+</script>
+<!-- 最新资讯结束 -->
+
+<!-- 精品课程开始 -->
+<section class="qs-section">
+
+    <div class="container">
+      <div class="qs-section-header">
+        <div class="title">精品课程</div>
+        <div class="subtitle">EXELLENT COURSE</div>
+      </div>
+      <div class="qs-course-cat">
+        <ul class="nav nav-pills" id="category-tab">
+          <li role="presentation" class="active">
+            <a href="" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">全部课程</a>
+          </li>
+          <li role="presentation">
+            <a href="" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">高一</a>
+          </li>
+          <li>
+             <a href="" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">高二</a>
+          </li>
+          <li>
+            <a href="" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">高三</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+<div class="course-list qs-exellent-course-list tab-content">
+
+  <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="course-item">
+      <div class="course-img">
+        <a href="#" target="_blank">
+            <img src="./_files/1.jpg"  class="img-responsive">
+        </a>
+      </div>
+      <div class="course-info">
+        <div class="title">
+          <a class="link-dark" href="#" target="_blank">
+            高一 化学 选修4  同步课程 吴志兰
+          </a>
+        </div>
+        <div class="metas clearfix"></div>
+      </div>
+    </div>              
+  </div>
+
+
+<div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="course-item">
+      <div class="course-img">
+        <a href="#" target="_blank">
+            <img src="./_files/1.jpg"  class="img-responsive">
+        </a>
+      </div>
+      <div class="course-info">
+        <div class="title">
+          <a class="link-dark" href="#" target="_blank">
+            高一 化学 选修4  同步课程 吴志兰
+          </a>
+        </div>
+        <div class="metas clearfix"></div>
+      </div>
+    </div>              
+  </div>
+
+  <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="course-item">
+      <div class="course-img">
+        <a href="#" target="_blank">
+            <img src="./_files/1.jpg"  class="img-responsive">
+        </a>
+      </div>
+      <div class="course-info">
+        <div class="title">
+          <a class="link-dark" href="#" target="_blank">
+            高一 化学 选修4  同步课程 吴志兰
+          </a>
+        </div>
+        <div class="metas clearfix"></div>
+      </div>
+    </div>              
+  </div>
+
+
+  <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="course-item">
+      <div class="course-img">
+        <a href="#" target="_blank">
+            <img src="./_files/1.jpg"  class="img-responsive">
+        </a>
+      </div>
+      <div class="course-info">
+        <div class="title">
+          <a class="link-dark" href="#" target="_blank">
+            高一 化学 选修4  同步课程 吴志兰
+          </a>
+        </div>
+        <div class="metas clearfix"></div>
+      </div>
+    </div>              
+  </div>
+
+
+
+  <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="course-item">
+      <div class="course-img">
+        <a href="#" target="_blank">
+            <img src="./_files/1.jpg"  class="img-responsive">
+        </a>
+      </div>
+      <div class="course-info">
+        <div class="title">
+          <a class="link-dark" href="#" target="_blank">
+            高一 化学 选修4  同步课程 吴志兰
+          </a>
+        </div>
+        <div class="metas clearfix"></div>
+      </div>
+    </div>              
+  </div>
+
+
+
+
+  <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="course-item">
+      <div class="course-img">
+        <a href="#" target="_blank">
+            <img src="./_files/1.jpg"  class="img-responsive">
+        </a>
+      </div>
+      <div class="course-info">
+        <div class="title">
+          <a class="link-dark" href="#" target="_blank">
+            高一 化学 选修4  同步课程 吴志兰
+          </a>
+        </div>
+        <div class="metas clearfix"></div>
+      </div>
+    </div>              
+  </div>
+
+
+
+
+  <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="course-item">
+      <div class="course-img">
+        <a href="#" target="_blank">
+            <img src="./_files/1.jpg"  class="img-responsive">
+        </a>
+      </div>
+      <div class="course-info">
+        <div class="title">
+          <a class="link-dark" href="#" target="_blank">
+            高一 化学 选修4  同步课程 吴志兰
+          </a>
+        </div>
+        <div class="metas clearfix"></div>
+      </div>
+    </div>              
+  </div>
+
+
+
+  <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="course-item">
+      <div class="course-img">
+        <a href="#" target="_blank">
+            <img src="./_files/1.jpg"  class="img-responsive">
+        </a>
+      </div>
+      <div class="course-info">
+        <div class="title">
+          <a class="link-dark" href="#" target="_blank">
+            高一 化学 选修4  同步课程 吴志兰
+          </a>
+        </div>
+        <div class="metas clearfix"></div>
+      </div>
+    </div>              
+  </div>
+
+  <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="course-item">
+      <div class="course-img">
+        <a href="#" target="_blank">
+            <img src="./_files/1.jpg"  class="img-responsive">
+        </a>
+      </div>
+      <div class="course-info">
+        <div class="title">
+          <a class="link-dark" href="#" target="_blank">
+            高一 化学 选修4  同步课程 吴志兰
+          </a>
+        </div>
+        <div class="metas clearfix"></div>
+      </div>
+    </div>              
+  </div>
+
+
+  <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="course-item">
+      <div class="course-img">
+        <a href="#" target="_blank">
+            <img src="./_files/1.jpg"  class="img-responsive">
+        </a>
+      </div>
+      <div class="course-info">
+        <div class="title">
+          <a class="link-dark" href="#" target="_blank">
+            高一 化学 选修4  同步课程 吴志兰
+          </a>
+        </div>
+        <div class="metas clearfix"></div>
+      </div>
+    </div>              
+  </div>
+
+
+  <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="course-item">
+      <div class="course-img">
+        <a href="#" target="_blank">
+            <img src="./_files/1.jpg"  class="img-responsive">
+        </a>
+      </div>
+      <div class="course-info">
+        <div class="title">
+          <a class="link-dark" href="#" target="_blank">
+            高一 化学 选修4  同步课程 吴志兰
+          </a>
+        </div>
+        <div class="metas clearfix"></div>
+      </div>
+    </div>              
+  </div>
+
+
+  <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="course-item">
+      <div class="course-img">
+        <a href="#" target="_blank">
+            <img src="./_files/1.jpg"  class="img-responsive">
+        </a>
+      </div>
+      <div class="course-info">
+        <div class="title">
+          <a class="link-dark" href="#" target="_blank">
+            高一 化学 选修4  同步课程 吴志兰
+          </a>
+        </div>
+        <div class="metas clearfix"></div>
+      </div>
+    </div>              
+  </div>
+
+
+</div>
+
+<div class="section-more">
+  <a class="btn btn-ghost-default" href="">更多课程</a>
+</div>
+</section>
+<!-- 精品课程结束 -->
+
+<!-- 求实名师开始 -->
+<section class="qs-section section-white hidden-xs hidden-sm">
+  <div class="container">
+      <div class="qs-section-header">
+        <div class="title">求是名师</div>
+        <div class="subtitle">OUR TEACHERS</div>
+      </div>
+  <div class="qs-teacher-list">
+    <div class="swiper-container row">
+
+  <div class="col-lg-3 col-md-4 col-sm-6 swiper-slide swiper-slide-duplicate" style="width: 285px; height: 371px;">
+    <div class="qs-teacher-item">
+      <div class="teacher-img">
+        <img class="avatar-lg" src="./_files/092950ece21e749033.jpg" alt="">
+      </div>
+      <div class="teacher-name">陈琳</div>
+      <div class="teacher-position">
+          高中化学在职教师                
+      </div>
+      <div class="teacher-bottom">
+        <div class="teacher-about">
+          &nbsp; &nbsp; 从教经历：2012年9月—2013年7月&nbsp; 温岭书生中学任教，任教高一化学。2013年9月—...
+        </div>
+      </div>   
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-4 col-sm-6 swiper-slide swiper-slide-duplicate" style="width: 285px; height: 371px;">
+    <div class="qs-teacher-item">
+      <div class="teacher-img"><img class="avatar-lg" src="./_files/092735722e27095878.jpg" alt=""></div>
+      <div class="teacher-name">陈丽娇</div>
+      <div class="teacher-position">
+        高中英语在职教师                
+      </div>
+      <div class="teacher-bottom">
+        <div class="teacher-about">
+          &nbsp; &nbsp;从教经历：大二开始教育实习。大三开始寒暑假、周末兼职教学。2013年毕业至今任教于求是高中　　...
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-4 col-sm-6 swiper-slide swiper-slide-duplicate" style="width: 285px; height: 371px;">
+    <div class="qs-teacher-item">
+      <div class="teacher-img"><img class="avatar-lg" src="./_files/14292995167f113477.jpg" alt=""></div>
+      <div class="teacher-name">陈亮</div>
+      <div class="teacher-position">
+        高中在职英语老师                
+      </div>
+      <div class="teacher-bottom">
+        <div class="teacher-about">
+          &nbsp;&nbsp; &nbsp; 从教经历：2011年9月——2015年至今 杭州新理想高级中学在岗；从毕业到现在，参与过很...
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-4 col-sm-6 swiper-slide swiper-slide-duplicate" style="width: 285px; height: 371px;">
+      <div class="qs-teacher-item">
+        <div class="teacher-img"><img class="avatar-lg" src="./_files/155719fa933a218326.png" alt=""></div>
+        <div class="teacher-name">胡婷婷</div>
+        <div class="teacher-position">
+          高中化学在职老师                
+        </div>
+        <div class="teacher-bottom">
+          <div class="teacher-about">
+            &nbsp; &nbsp; 从教经历：2005年—2015年，目前求是高级中学任职十年的教学经历，形成完整的知识体系注重...
+          </div>
+        </div>  
+      </div>
+  </div>
+</div>
+</div>                                 
+  <div class="section-more">
+    <a class="btn btn-ghost-default" href="#">更多名师</a>
+  </div>
+</div>
+</section>
+<!-- 求实名师结束 -->
+
+</body>
+</html>
