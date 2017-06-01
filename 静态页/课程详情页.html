@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/jquery.pwstabs.min.css">
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+  	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<script src="js/jquery.pwstabs.js"></script>
+  	<link rel="stylesheet" type="text/css" href="css/header.css">
+	<title>课程详情页</title>
+	<style type="text/css">
+	.course-title{
+		padding: 0px 0px 0px 0px;
+		border: 2px solid #e4ecf3;
+	}
+	.course-title-left{
+		
+	}
+	.course-title-right{
+		background-color: #fafafa;
+	}
+	.course-image{
+		margin:15px 15px 15px 15px; 
+	}
+	.score{
+		width: 200px;
+	}
+	.course-title-right{
+		font-size: 20px;
+		text-align: center;
+		height: 220px;
+	}
+	.course-title-right-top{
+		margin-top: 40px;
+	}
+	.course-title-right-bottom{
+		margin-top: 40px;
+	}
+	a:link{
+		color: #000000;
+	}
+	.course-detail-main{
+		margin-top:20px;
+	}
+	.pws_tabs_controll{
+		margin: 0px;
+		border: 0px;
+		display: block;
+		padding: 0px;
+		text-decoration: none;
+	}
+	.pws_tabs_controll li{
+		display: inline-block;
+		background-color: #ffffff
+	}
+	.pws_tabs_controll li a{
+		margin-left: 3px;
+		border: 0px;
+		display: block;
+		padding: 15px 20px;
+		text-decoration: none;
+	}
+	.pws_tab_active{
+		background-color: #c30d22;
+		
+	}
+	.course-details-header{
+		position: relative;
+    	margin: 5px auto 20px auto;
+    	padding: 0 30px 0 15px;
+    	color: #313131;
+    	font-size: 16px;
+	}
+	.course-list-list{
+		margin-top: 20px;
+    	margin-bottom: 0;
+    	padding-left: 0;
+    	list-style-type: none;
+	}
+	.piece-header
+	{
+		font-size:22px;
+	}
+	.piece-body
+	{
+		font-size:18px;
+	}
+	.pieca
+	{
+		padding-left:6%;
+	}
+	.course-type
+	{
+		float:right;
+	}
+	a:link{
+		text-decoration:none;   /* 指正常的未被访问过的链接*/
+	}
+	a:visited{
+		text-decoration:none; /*指已经访问过的链接*/
+	}
+	a:hover{
+		text-decoration:none;/*指鼠标在链接*/
+		color: red;
+	}
+	a:active{
+		text-decoration:none;/* 指正在点的链接*/ 
+	}
+	.avatar-md
+	{
+		width: 60px;
+		height: 60px;
+		border-radius:50%;
+		overflow:hidden;
+	}
+	.avatar-sm
+	{
+		width: 40px;
+		height: 40px;
+		border-radius:50%;
+		overflow:hidden;
+		margin-top: 8px;
+		margin-left:10px;
+	}
+
+
+	</style>
+	
+</head>
+<body>
+<!--导航栏-->
+<header class="qs-header">
+    <nav class="collapse navbar-collapse">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">趣学教育</a> 
+      </div>
+      <ul class="nav navbar-nav navbar-letf">
+        <li class=""><a href="#">首页</a></li>          
+        <li class=""><a href="#">最新资讯</a></li>
+        <li class=""><a href="#">找老师</a></li>
+        <li class=""><a href="#">看直播</a></li>  
+        <li class=""><a href="#">选课程</a></li>
+      </ul>
+      <form class="navbar-form pull-right visible-lg" action="http://www.qswangxiao.com/search" method="get">
+        <div class="form-group">
+          <input class="form-control" placeholder="请输入搜索的内容" >
+          <button class="button glyphicon glyphicon-search"></button>
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right col-md-1.5">
+      <li class="dropdown">  
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:0px 15px 0px 15px"><img src="./_files/11244910652b863422.png" height="50" width="50" class="img-circle"> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">个人中心</a></li>
+            <li><a href="#">账户管理</a></li>
+            <li><a href="#">退出登录</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    </nav>
+</header>	
+	<div class="container">
+		<!--面包屑开始-->
+		<ol class="breadcrumb">
+  			<li><a href="#">首页</a></li>
+  			<li><a href="#">选课程</a></li>
+  			<li class="active">HTML5基础</li>
+		</ol>
+		<!--面包屑结束-->
+		<!--标题div开始-->
+		<div class="course-title col-md-12 col-sx-12 col-sm-12 col-lg-12">
+			<div class="course-title-left col-md-8">
+				<div class="course-image col-md-7">
+					<img src="http://7xjtx2.com1.z0.glb.clouddn.com/media/cache/e3/3a/e33aa136102d213093c3420c32f18a9e.png">
+				</div>
+				<div class="col-md-4">
+					<h2>HTML5基础</h2>
+					<div class="score">
+					<p>价格<span>免费/100金币</span></p>
+					</div>
+					
+				</div>
+			</div>
+			<div class="course-title-right col-md-4">
+				<div class="course-title-right-top">
+					<span class="glyphicon glyphicon-user">100人</span>
+				</div>
+				<div class="course-title-right-bottom">
+					<a href="#"><span class="glyphicon glyphicon-tag"></span>
+					<span>收藏</span></a>
+					<a href="#"><span class="glyphicon glyphicon-book"></span>
+					<span>学习</span></a>
+				</div>
+			</div>
+		</div>
+		<!--标题div结束-->
+		<div class="course-detail-main col-md-9">
+			<div class="course-detail-main-div">
+   				<div data-pws-tab="course-details" data-pws-tab-name="课程概况">
+   					<div class="course-details-main">
+   						<div class="course-detail-content" data-widget-cid="widget-0">
+							<div class="es-piece">
+								<div class="piece-header">
+									课程介绍
+								</div>
+								<div class="piece-body p-lg clearfix">
+									<div class="pieca">
+									<p>&nbsp&nbsp本课程为新高二英语必修四、必修五教材同步复习课，是杭州求是高复倾力推出的系列免费直播公开课。本课程将对所学重难知识点进行同步提升突破。授课时间为每周六下午14：30—15：00 &nbsp;15：10—15：40两节课连上，中途休息10分钟！</p>
+									<p>本课程所有授课老师为浙江省高中在职教师。</p>
+									</div>
+								</div>
+							</div>
+							<div class="es-piece">
+								<div class="piece-header">
+									课程目标
+								</div>
+								<div class="piece-body">&nbsp&nbsp&nbsp&nbsp
+										<i class="glyphicon glyphicon-menu-right" style="font-size:12px;"></i> &nbsp&nbsp对所学重难知识点进行同步提升突破
+										
+									
+								</div>
+							</div>
+							<div class="es-piece">
+								<div class="piece-header">
+									适合人群
+								</div>
+								<div class="piece-body">&nbsp&nbsp&nbsp&nbsp
+										<i class="glyphicon glyphicon-menu-right" style="font-size:12px;"></i> &nbsp&nbsp高二学员		
+								</div>
+							</div>
+						</div>		
+   					</div>
+   				</div>
+
+   				<div data-pws-tab="course-list" data-pws-tab-name="课程列表">
+   					<div class="panel panel-default">
+   						<div class="panel-heading">
+            					<a class="course-lesson" href="#modal">
+        						<i class="glyphicon glyphicon-star-empty"></i>
+      							<span class="title">   课时1：第一单元 语言点回顾及语法（主谓一致）（俞蔚娜）</span>
+    							<span class="course-type">回放</span>
+      							</a>
+    					</div>
+    					<div class="panel-heading">
+            					<a class="course-lesson" href="#modal">
+        						<i class="glyphicon glyphicon-star-empty"></i>
+      							<span class="title">   课时2：第一单元 语言点回顾及语法（主谓一致）（俞蔚娜）</span>
+    							<span class="course-type">回放</span>
+      							</a>
+    					</div>
+    					<div class="panel-heading">
+            					<a class="course-lesson" href="#modal">
+        						<i class="glyphicon glyphicon-star-empty"></i>
+      							<span class="title">   课时3：第一单元 语言点回顾及语法（主谓一致）（俞蔚娜）</span>
+    							<span class="course-type">回放</span>
+      							</a>
+    					</div>
+    					<div class="panel-heading">
+            					<a class="course-lesson" href="#modal">
+        						<i class="glyphicon glyphicon-star-empty"></i>
+      							<span class="title">   课时4：第一单元 语言点回顾及语法（主谓一致）（俞蔚娜）</span>
+    							<span class="course-type">回放</span>
+      							</a>
+    					</div>
+    					<div class="panel-heading">
+            					<a class="course-lesson" href="#modal">
+        						<i class="glyphicon glyphicon-star-empty"></i>
+      							<span class="title">   课时5：第一单元 语言点回顾及语法（主谓一致）（俞蔚娜）</span>
+    							<span class="course-type">回放</span>
+      							</a>
+    					</div>
+    					<div class="panel-heading">
+            					<a class="course-lesson" href="#modal">
+        						<i class="glyphicon glyphicon-star-empty"></i>
+      							<span class="title">   课时6：第一单元 语言点回顾及语法（主谓一致）（俞蔚娜）</span>
+    							<span class="course-type">回放</span>
+      							</a>
+    					</div>
+    					<div class="panel-heading">
+            					<a class="course-lesson" href="#modal">
+        						<i class="glyphicon glyphicon-star-empty"></i>
+      							<span class="title">   课时7：第一单元 语言点回顾及语法（主谓一致）（俞蔚娜）</span>
+    							<span class="course-type">回放</span>
+      							</a>
+    					</div>
+    					<div class="panel-heading">
+            					<a class="course-lesson" href="#modal">
+        						<i class="glyphicon glyphicon-star-empty"></i>
+      							<span class="title">   课时8：第一单元 语言点回顾及语法（主谓一致）（俞蔚娜）</span>
+    							<span class="course-type">回放</span>
+      							</a>
+    					</div>
+    					<div class="panel-heading">
+            					<a class="course-lesson" href="#modal">
+        						<i class="glyphicon glyphicon-star-empty"></i>
+      							<span class="title">   课时9：第一单元 语言点回顾及语法（主谓一致）（俞蔚娜）</span>
+    							<span class="course-type">回放</span>
+      							</a>
+    					</div>
+					</div>
+				</div>
+   				<div data-pws-tab="course-comments" data-pws-tab-name="评论">
+   					<div>
+						现在还没有评论，快来评论一下吧
+   					</div>
+   				</div>
+			</div>
+		</div>
+	
+
+	
+	<div class="col-lg-3 col-md-4  course-sidebar">
+         <div class="panel panel-default">
+  			<div class="panel-heading">
+    			<h3 class="panel-title">
+      				授课教师
+    			</h3>
+  			</div>
+  			<div class="panel-body">
+                  	<div class="media media-default">
+          				<div class="media-left">
+              			<a class=" js-user-card" href="">
+                  			<img class="avatar-md" src="./_files/11244910652b863422.png">
+  						</a>
+ 						</div>
+          				<div class="media-body">
+            				<div class="title">
+                  				<a class="link-dark link-light" href="">沈树英</a>
+							</div>
+            				<div class="content">高中物理在职教师</div>
+          				</div>
+        			</div>
+            </div>
+		</div>
+
+                  
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+        		<h3 class="panel-title">
+      				最新学员
+    			</h3>
+  			</div>
+  			<div class="panel-body">
+              		<a class=" js-user-card" href=""data-user-id="10110">
+                  		<img class="avatar-sm" src="./_files/11244910652b863422.png">
+					</a>
+					<a class=" js-user-card" href=""data-user-id="10111">
+                  		<img class="avatar-sm" src="./_files/1.jpg">
+					</a>
+					<a class=" js-user-card" href=""data-user-id="10112">
+                  		<img class="avatar-sm" src="./_files/11244910652b863422.png">
+					</a>
+					<a class=" js-user-card" href=""data-user-id="10113">
+                  		<img class="avatar-sm" src="./_files/1.jpg">
+					</a>
+					<a class=" js-user-card" href=""data-user-id="10114">
+                  		<img class="avatar-sm" src="./_files/11244910652b863422.png">
+					</a>
+					<a class=" js-user-card" href=""data-user-id="10115">
+                  		<img class="avatar-sm" src="./_files/1.jpg">
+					</a>
+					<a class=" js-user-card" href=""data-user-id="10116">
+                  		<img class="avatar-sm" src="./_files/xiao.jpg">
+					</a>
+          			<a class=" js-user-card" href=""data-user-id="10110">
+                  		<img class="avatar-sm" src="./_files/11244910652b863422.png">
+					</a>
+					<a class=" js-user-card" href=""data-user-id="10110">
+                  		<img class="avatar-sm" src="./_files/11244910652b863422.png">
+					</a>
+					<a class=" js-user-card" href=""data-user-id="10110">
+                  		<img class="avatar-sm" src="./_files/xiao.jpg">
+					</a>
+					<a class=" js-user-card" href=""data-user-id="10110">
+                  		<img class="avatar-sm" src="./_files/11244910652b863422.png">
+					</a>
+					<a class=" js-user-card" href=""data-user-id="10110">
+                  		<img class="avatar-sm" src="./_files/xiao.jpg">
+					</a>
+					<a class=" js-user-card" href=""data-user-id="10110">
+                  		<img class="avatar-sm" src="./_files/11244910652b863422.png">
+					</a>
+					<a class=" js-user-card" href=""data-user-id="10110">
+                  		<img class="avatar-sm" src="./_files/xiao.jpg">
+					</a>
+			 </div>
+		</div>    
+    </div>
+
+
+
+</div>
+</body>
+<script type="text/javascript">
+	jQuery(function($){
+   $('.course-detail-main-div').pwstabs({
+   		effect: 'scale',
+
+   		defaultTab: 1,
+
+   });
+});
+</script>
