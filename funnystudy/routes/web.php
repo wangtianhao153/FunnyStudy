@@ -19,4 +19,5 @@ Route::get('teacher/uploadvideo/{id}','CoursemanagerController@uploaddisplay');
 Route::post('teacher/listdelete/{id}','CoursemanagerController@listdelete');
 Route::post('teacher/createfirst','CoursemanagerController@createfirst');
 /*课程列表*/
-Route::get('course','CoursedisplayController@index');
+Route::get('course/list','CourseController@index');
+Route::get("course/play/{id}",'CourseController@courseplay');
