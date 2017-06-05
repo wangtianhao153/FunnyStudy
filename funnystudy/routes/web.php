@@ -10,11 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('teacher/index','CourseController@courselistdisplay');
-Route::get('teacher/info/{id}','CourseController@courseinfodisplay');
-Route::get('teacher/createcourse','CourseController@createCourse');
-Route::get('teacher/createchapter','CourseController@createChapter');
-Route::get('teacher/uploadvideo/{id}','CourseController@uploaddisplay');
-Route::post('teacher/listdelete/{id}','CourseController@listdelete');
-Route::post('teacher/createfirst','CourseController@createfirst');
+/*课程管理*/
+Route::get('teacher/index','CoursemanagerController@courselistdisplay');
+Route::get('teacher/info/{id}','CoursemanagerController@courseinfodisplay');
+Route::get('teacher/createcourse','CoursemanagerController@createCourse');
+Route::get('teacher/createchapter','CoursemanagerController@createChapter');
+Route::get('teacher/uploadvideo/{id}','CoursemanagerController@uploaddisplay');
+Route::post('teacher/listdelete/{id}','CoursemanagerController@listdelete');
+Route::post('teacher/createfirst','CoursemanagerController@createfirst');
+/*课程列表*/
+Route::get('course','CoursedisplayController@index');
