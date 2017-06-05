@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('teacher/index','CourseController@courselistdisplay');
+Route::get('teacher/info/{id}','CourseController@courseinfodisplay');
+Route::get('teacher/createcourse','CourseController@createCourse');
+Route::get('teacher/createchapter','CourseController@createChapter');
+Route::get('teacher/uploadvideo/{id}','CourseController@uploaddisplay');
+Route::post('teacher/listdelete/{id}','CourseController@listdelete');
+Route::post('teacher/createfirst','CourseController@createfirst');
