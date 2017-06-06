@@ -1,0 +1,33 @@
+.login{
+    float:left;
+    margin-left:550px;
+    margin-top: 40px;
+}
+.login_btn{
+    width:150px;
+    height:40px;
+    background-color:#FF0033;
+    color: #FFFFFF;
+    font-family: '黑体';
+    font-size:20px;
+    border-radius:10px;
+}
+.text-center{
+    width:100px;
+    height:40px;
+    margin-left:50px;
+    margin-top: 20px;
+}
+.form-forget{
+    font-size: 10px;
+    margin-left: 40px;
+}
+.form-group li{
+    margin-bottom: 5px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+.form-group input{
+    font-size: 15px;
+    border-radius:5px;
+}

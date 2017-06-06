@@ -1,0 +1,64 @@
+    body{
+      font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    }
+    .con_right_list li a:hover{
+      color: red;
+    }
+    .navbar-nav li a:hover{
+      background-color: #fff;
+    }
+    .navbar-letf{
+      position: absolute;
+      margin-left: 25%;
+      font-size: 18px;
+    }
+    .qs-header{
+      height: 80px;
+      padding: 15px 0;
+      background-color: #fff;
+    }
+    .navbar-brand{
+      font-size: 50px;
+    }
+    .visible-lg {
+      position: absolute;
+      margin-left: 70%;
+    }
+    .navbar-form .form-group {
+      position: relative;
+    }
+  .navbar-form .form-control {
+    height: 30px;
+    width: 130px;
+    border-radius: 20px;
+    line-height: 28px;
+    padding: 0 24px 0 12px;
+    border-color:#C0C0C0;
+  }
+
+  .navbar-form .button {
+    position: absolute;
+    right: 2px;
+    top: 6px;
+    border: none;
+    background: none;
+  }
+
+.qs-header .navbar-header {
+  margin-top: 3px;
+}
+.qs-header .container {
+    position: relative;
+}
+.qs-header .navbar-nav > li > a {
+    color: #000;
+}
+.navbar-form .form-control {
+    background-color: #e7e7e7;
+}
+a:hover {
+  color: #c30d22;
+}
+.qs-header .navbar-nav > li > a:hover {
+  color: #c30d22;
+}

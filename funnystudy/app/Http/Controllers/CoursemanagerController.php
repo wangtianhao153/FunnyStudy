@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\File;
 
 
-class CourseController extends Controller
+class CoursemanagerController extends Controller
 {
 //    进行所有操作之前的    登录验证
 
