@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>教师课程管理创建课程</title>
-
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
+@extends('header')
+@section('title','教师课程管理创建课程')
+@section('style')
+  <style type="text/css">
       .tmp_nav{
         height: 130px;
       }
@@ -42,14 +36,11 @@
         font-size: 25px;
       }
     </style>
-  </head>
-  <body>
-  <!-- 导航栏 -->
-<div class="tmp_nav"></div>
-
-
-<!-- 内容主题 -->
-
+  @endsection
+@section('header')
+  @parent
+  @endsection
+@section('content')
 <!-- 左导航 -->
   <div class="left_nav">
     <ul class="nav nav-pills nav-stacked">
@@ -113,13 +104,11 @@
       <div class="form-group" id="warning"></div>
     </form>
   </div>
+@endsection
 <!-- 底部 -->
 <div></div>
-
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
-    <script src="https://cdn.bootcss.com/webuploader/0.1.1/webuploader.js"></script>
-  </body>
+@section('javascript')
+  <script src="https://cdn.bootcss.com/webuploader/0.1.1/webuploader.js"></script>
   <script type="text/javascript">
   $('.btn-info').click(function(){
     $('.alert-dismissible').alert('close');
@@ -209,4 +198,4 @@ uploader.on( 'uploadSuccess', function( file ) {
     $(location).attr('href', '{{ url('teacher/createchapter') }}');
 });
   </script>
-</html>
+  @endsection

@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{{ $course->name }}</title>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-      body{
-        padding-top: 70px;
-      }
+@extends('header')
+@section('title',$course->name)
+@section('style')
+  <style type="text/css">
       .left_nav{
         width:15%;
         margin-left: 8%;
@@ -56,47 +48,11 @@
         height: 200px;
       }
       </style>
-  <body>
-  <!-- 导航栏 -->
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header col-md-1.5">
-      <a class="navbar-brand" href="#">趣学教育</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <div class="navbar-left col-md-7">
-      <ul class="nav navbar-nav navbar-right col-md-12 text-center">
-        <li class="active col-md-3"><a href="#">首页 <span class="sr-only">(current)</span></a></li>
-        <li class="col-md-3"><a href="#">找老师</a></li>
-        <li class="col-md-3"><a href="#">选课程</a></li>
-        <li class="col-md-3.5"><a href="#">最新资讯</a></li>
-      </ul>
-    </div>
-      <form class="navbar-form navbar-right col-md-3">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search" value="请输入想要搜索的课程">
-        </div>
-        <button type="submit" class="btn btn-default">serch</button>
-      </form>    
-      <ul class="nav navbar-nav navbar-right col-md-1.5">
-      
-      <li class="dropdown">  
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:0px 15px 0px 15px"><img src="image/test.png" height="50" width="50" class="img-circle"> <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">个人中心</a></li>
-            <li><a href="#">账户管理</a></li>
-            <li><a href="#">退出登录</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-<!-- 内容主题 -->
-
+  @endsection
+@section('header')
+  @parent
+  @endsection
+@section('content')
 <!-- 左导航 -->
   <div class="left_nav">
     <ul class="nav nav-pills nav-stacked">
@@ -150,11 +106,10 @@
 
     </div>
   </div>
+@endsection
+@section('javascript')
 
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
-    <script src="https://cdn.bootcss.com/webuploader/0.1.1/webuploader.js"></script>
-  </body>
+  <script src="https://cdn.bootcss.com/webuploader/0.1.1/webuploader.js"></script>
   <script type="text/javascript">
 
 $('#Img').hover(function(){
@@ -548,4 +503,4 @@ function newChapter(){
 })(jQuery);
 
   </script>
-</html>
+  @endsection
