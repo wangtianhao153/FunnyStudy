@@ -1,4 +1,5 @@
 <html lang="en">
+@extends('header')
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -6,67 +7,91 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="css/register.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/header.css">
-    <title>Funnystudy注册系统</title>
+    @section('title','funnystudy注册系统')
     <style>
         html, body { height: 100%; overflow: hidden; }
     </style>
-    <script type="text/javascript">
-
-    </script>
 </head>
 <body>
     <!--导航栏-->
-        <header class="qs-header">
-            <nav class="collapse navbar-collapse">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#">趣学教育</a>
-                    </div>
-                    <ul class="nav navbar-nav navbar-letf">
-                        <li class=""><a href="#">首页</a></li>
-                        <li class=""><a href="#">最新资讯</a></li>
-                        <li class=""><a href="#">找老师</a></li>
-                        <li class=""><a href="#">看直播</a></li>
-                        <li class=""><a href="#">选课程</a></li>
-                    </ul>
-                    <form class="navbar-form pull-right visible-lg" action="http://www.qswangxiao.com/search" method="get">
-                        <div class="form-group">
-                            <input class="form-control" placeholder="请输入搜索的内容" >
-                            <button class="button glyphicon glyphicon-search"></button>
-                        </div>
-                    </form>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="register.blade.php"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-                        <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
+    @section('header')
+        @parent
+    @endsection
 
     <!--注册-->
+    @section('content')
     <div class="login">
-    <form action="#" method="post">
+        @if(Session::has('message'))
+            <div style="margin-left: 50px;color: red;"> {{Session::get('message')}}
+            </div>
+        @endif
+    <form action="{{URL::action('RegisterController@register')}}" method="post">
         <div class="form-group">
+            <input type="hidden" name="_token" value="{{csrf_token()}}">
             <ul type="none">
                 <li>用户名</li>
-                <input type="text" name="name" placeholder="用户名" >
+                <input type="text" name="name" placeholder="用户名"  id="user">
                 <li>注册账号</li>
-                <input type="text" name="email" placeholder="邮箱" >
+                <input type="text" name="email" placeholder="邮箱" id="email">
                 <li>密码</li>
-                <input type="password" name="password" placeholder="密码" >
+                <input type="password" name="password" placeholder="密码" id="pass">
                 <li>确认密码</li>
-                <input type="password" name="psw" placeholder="确认密码" >
+                <input type="password" name="psw" placeholder="确认密码" id="pswd">
             </ul>
         </div>
         <div class="form-forget">
-            <input name="" type="checkbox" id="check" />
+            <input name="" type="checkbox" id="check" id="check"/>
             &nbsp;&nbsp;已阅读并同意
             <a href="#" target="_blank">《趣学教育的服务条款》</a>
         </div>
         <div class="text-center">
-            <input type="submit" class="login_btn" onclick="return alertMsg('请接收邮件进行验证');" value="注  册">
+            <input type="submit" class="login_btn" onclick="return chk_form();" value="注  册">
         </div>
     </form>
 </div>
+    @endsection
 </body>
+@section('javascript')
+<script type="text/javascript">
+    function chk_form(){
+        var user = document.getElementById("user");
+        if(user.value==""){
+            alert("用户名不能为空！");
+            return false;
+            //user.focus();
+        }
+        var pass = document.getElementById("pass");
+        if(pass.value==""){
+            alert("密码不能为空！");
+            return false;
+            //pass.focus();
+        }
+        var psw = document.getElementById("pswd");
+        if(!(psw.value==pass.value)){
+            alert("两次密码不相同！");
+            return false;
+            //pass.focus();
+        }
+        var email = document.getElementById("email");
+        if(email.value==""){
+            alert("Email不能为空！");
+            return false;
+            //email.focus();
+        }
+        var preg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/; //匹配Email
+        if(!preg.test(email.value)){
+            alert("Email格式错误！");
+            return false;
+            //email.focus();
+        }
+        var check = document.getElementById("check"); //判断单选
+
+        if(!(check.checked)){
+            alert("未同意条款！");
+            return false;
+            //email.focus();
+        }
+    }
+</script>
+@endsection
 </html>

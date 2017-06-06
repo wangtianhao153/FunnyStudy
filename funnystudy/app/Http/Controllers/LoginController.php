@@ -15,7 +15,7 @@ class LoginController extends Controller
         $username = $request->get('email');
         $username = (string)$username;
         $password = $request->get('password');
-        $password = (string)$password;
+        $password = md5($password);
         $psd = DB::table('users')->where('username',$username)->value('password');
         $num = count($psd);
 //        $arr['flag']=1;
@@ -27,6 +27,7 @@ class LoginController extends Controller
                 $id = DB::table('users')->where('username',$username)->value('id');
                 $request->session()->put('username',$name);
                 $request->session()->put('id',$id);
+//                dd(session('username'));
                 return view('index/index');
             }else{
 //                $this->ajaxReturn($arr,json);
