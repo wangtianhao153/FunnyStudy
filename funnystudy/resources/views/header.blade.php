@@ -33,10 +33,17 @@
                         <button class="button glyphicon glyphicon-search"></button>
                     </div>
                 </form>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
-                </ul>
+                @if(Session::has('username'))
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="course"><span class="glyphicon glyphicon-user"></span> {{Session::get('username')}}</a></li>
+                        <li><a href="exits"><span class="glyphicon glyphicon-log-in"></span> 注销</a></li>
+                    </ul>
+                @else
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="register"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                    </ul>
+                @endif
             </div>
         </nav>
     </header>

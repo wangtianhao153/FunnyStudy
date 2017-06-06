@@ -31,3 +31,7 @@ Route::get("course/play/{id}",'CourseController@courseplay');
 /*登录*/
 Route::get('login','LoginController@index');
 Route::post('/submit','LoginController@validation');
+Route::get('exits','LoginController@exits');
+//注册
+Route::get('register','RegisterController@index');
+Route::post('/sbt','RegisterController@register');
