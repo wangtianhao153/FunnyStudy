@@ -14,7 +14,7 @@
     <style>
     </style>
 
-{{--    <script src="{{URL::asset('js/Ajax.js')}}"></script>--}}
+    <script src="{{URL::asset('js/Ajax.js')}}"></script>
 </head>
 <body>
 <!--导航栏-->
@@ -38,23 +38,19 @@
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="register/register.blade.php"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-                <li><a href="login/login.blade.php"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                <li><a href="register"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
             </ul>
         </div>
     </nav>
 
 </header>
-<!--面包屑开始-->
-<div style="margin-left: 225px;margin-right: 222px">
-    <ol class="breadcrumb">
-        <li><a href="#">首页</a></li>
-        <li class="active">注册</li>
-    </ol>
-</div>
     <!--登录-->
     <div class="login">
-        {{--<h5 id="loginError" style="color:red">账号或密码不正确</h5>--}}
+        @if(Session::has('message'))
+            <div style="margin-left: 50px;color: red;"> {{Session::get('message')}}
+            </div>
+        @endif
         <form action="{{URL::action('LoginController@validation')}}" method="post" >
             <div class="form-group">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -68,6 +64,7 @@
             <div class="form-forget">
                 <a href="#" style="color: #0000FF" ;>忘记密码</a>|<a href="register.html" style="color: #0000FF">还没账号？立即注册</a>
             </div>
+            {{--<h5 id="loginError" style="color:red">账号或密码不正确</h5>--}}
             <div class="text-center">
                 <input type="submit" class="login_btn" style="border-radius:10px;" onclick="return chk_form();" value="登  录">
             </div>
