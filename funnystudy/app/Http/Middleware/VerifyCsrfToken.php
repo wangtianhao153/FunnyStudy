@@ -12,11 +12,15 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
+//        教师课程管理部分
         'teacher/listdelete/*',
         'teacher/createfirst',
         'teacher/createsecond',
         'teacher/createthird',
         'teacher/editthumb',
         'teacher/editCourseInfo',
+        'teacher/videoDelete/*',
+        'teacher/chapterDelete/*',
+        'teacher/reorder',
     ];
 }

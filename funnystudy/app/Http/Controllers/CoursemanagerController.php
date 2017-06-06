@@ -38,11 +38,11 @@ class CoursemanagerController extends Controller
 //        从数据库获取视图所需数据
 //        根据$id查询课程表course,章节表chapter,查询字段course.id,course.name,course.URL,course.cost,chapter.id,chapter.name
         $courseinfo = DB::table('course')->select('id','name','URL','brief')->where('delete_at',0)->where('id',$id)->get();
-        $chapterinfo = DB::table('chapter')->select('id','name')->where('courseID',$id)->orderBy('id', 'asc')->get();
+        $chapterinfo = DB::table('chapter')->select('id','name')->where('courseID',$id)->orderBy('order', 'asc')->get();
         $videoinfo = DB::table('video')
             ->join('chapter','video.chapterid','=','chapter.id')
             ->select('chapter.id as c_id','video.id','video.name')
-            ->orderBy('id', 'asc')
+            ->orderBy('video.order', 'asc')
             ->get();
 //        将数据传入视图
 //        显示视图
@@ -130,8 +130,7 @@ class CoursemanagerController extends Controller
     public function createsecond(Request $request)
     {
 //        获取课程ID
-//        $courseID = session('courseID');
-        $courseID = 1;
+        $courseID = session('courseID');
 //        获取表单传输的数据
         $datas = $request->get('chapterName');
 //        循环遍历插入数据库
@@ -140,6 +139,7 @@ class CoursemanagerController extends Controller
             DB::table('chapter')->insert([
                 'name'  =>  $v,
                 'courseID'  =>  $courseID,
+                'order' =>  $k,
             ]);
         }
 //        页面跳转
@@ -158,11 +158,12 @@ class CoursemanagerController extends Controller
         $chapterID = $request->get('chapterID');
         $videoName = $request->get('videoName');
 //        插入数据库
-        DB::table('video')->insert([
+        $id = DB::table('video')->insertGetId([
             'name'  =>  $videoName,
             'chapterID' =>  $chapterID,
             'URL'   =>  $path,
         ]);
+        DB::table('video')->where('id',$id)->update(['order'=>$id]);
     }
 //    更改课程图片
     public function editthumb(Request $request)
@@ -209,8 +210,60 @@ class CoursemanagerController extends Controller
                     'name'  =>  $editDate,
                     'courseID'  =>  $ID,
                 ]);
+                DB::table('chapter')->where('id',$id)->update(['order'=>$id]);
                 echo $id;
                 break;
         }
+    }
+
+    /**
+     * 删除视频
+     */
+    public function videoDelete($id)
+    {
+//        从数据库查询视频地址
+        $path = DB::table('video')->select('URL')->where('id',$id)->get();
+//        删除视频
+        if(Storage::delete($path)) {
+//        删除数据库数据
+            DB::table('video')->where('id',$id)->delete();
+        }
+    }
+    public function chapterDelete($id)
+    {
+//        查询章节下视频
+        $videos = DB::table('video')->select('id')->where('chapterID',$id)->get();
+//        删除视频记录
+        foreach ($videos as $video)
+        {
+            $this::videoDelete($video->id);
+        }
+//        删除章节
+        DB::table('chapter')->where('id',$id)->delete();
+    }
+
+    /**
+     * 排序
+     */
+    public function reorder(Request $request)
+    {
+        $type = $request->get('type');
+        $firstID = $request->get('firstID');
+        $secondID = $request->get('secondID');
+        switch ($type)
+        {
+            case 1:
+                $table = 'video';
+                break;
+            case 2:
+                $table = 'chapter';
+                break;
+        }
+        $second = DB::table($table)->select('order')->where('id',$secondID)->get();
+        $first = DB::table($table)->select('order')->where('id',$firstID)->get();
+        $firstOrder =$first[0]->order;
+        $secondOrder = $second[0]->order;
+        DB::table($table)->where('id',$firstID)->update(['order'=>$secondOrder]);
+        DB::table($table)->where('id',$secondID)->update(['order'=>$firstOrder]);
     }
 }

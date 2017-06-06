@@ -61,8 +61,8 @@
   <div class="right_content">
     <!-- 路径导航 -->
     <ol class="breadcrumb">
-      <li><a href="#">首页</a></li>
-      <li><a href="#">课程管理</a></li>
+      <li><a href="{{ url('index') }}">首页</a></li>
+      <li><a href="{{ url('teacher/index') }}">课程管理</a></li>
       <li class="active">创建课程</li>
     </ol>
     <!-- 表单提交 -->
@@ -122,6 +122,7 @@
   </body>
   <script type="text/javascript">
   $('.btn-info').click(function(){
+    $('.alert-dismissible').alert('close');
     if ($('#courseName').val()==''||$('#briefCourse').val()=='') {
       addWarning('请输入课程名和课程简介','错误!','danger')
     }else{
