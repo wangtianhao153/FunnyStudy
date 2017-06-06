@@ -6,11 +6,140 @@
   <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<title></title>
 	<style type="text/css">
+		body{
+			font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+		}
+		.con_right_list li a:hover{
+			color: red;
+		}
+		.navbar-nav li a:hover{
+			background-color: #fff;
+		}
+		.navbar-letf{
+			position: absolute;
+			margin-left: 25%;
+			font-size: 18px;
+		}
+		.qs-header{
+			height: 80px;
+			padding: 15px 0;
+			background-color: #fff;
+		}
+		.navbar-brand{
+			font-size: 50px;
+		}
+		.visible-lg {
+			position: absolute;
+			margin-left: 70%;
+		}
+		.navbar-form .form-group {
+			position: relative;
+		}
+		.navbar-form .form-control {
+			height: 30px;
+			width: 130px;
+			border-radius: 20px;
+			line-height: 28px;
+			padding: 0 24px 0 12px;
+			border-color:#C0C0C0;
+		}
 
+		.navbar-form .button {
+			position: absolute;
+			right: 2px;
+			top: 6px;
+			border: none;
+			background: none;
+		}
+
+		.qs-header .navbar-header {
+			margin-top: 3px;
+		}
+		.qs-header .container {
+			position: relative;
+		}
+		.qs-header .navbar-nav > li > a {
+			color: #000;
+		}
+		.navbar-form .form-control {
+			background-color: #e7e7e7;
+		}
+		a:hover {
+			color: #c30d22;
+		}
+		.qs-header .navbar-nav > li > a:hover {
+			color: #c30d22;
+		}
+
+		.list{
+			margin-top: 70px;
+		}
+		.thumbnail{
+			margin-top: 20px;
+		}
+		a:link {
+			color: #000000;
+			text-decoration: none;
+		}
+		a:visited {
+			color: #000000;
+			text-decoration: none;
+		}
+		a:hover {
+			color: #999999;
+			text-decoration: underline;
+		}
+		a{
+			text-align: center;
+		}
+		.nav-stacked{
+			padding-left: 50px;
+			padding-bottom: 20px;
+		}
+		.nav-stacked ul{
+			border-bottom: 1px dashed #dedede;
+			line-height: 2;
+			margin-right: 15px;
+		}
+		.page{
+			text-align: center;
+		}
+		.pagination-lg>li>a{
+			margin-left: 5px;
+		}
+		body{
+			padding-top: 70px;
+		}
 	</style>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
+	<header class="qs-header">
+		<nav class="collapse navbar-collapse">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">趣学教育</a>
+				</div>
+				<ul class="nav navbar-nav navbar-letf">
+					<li class=""><a href="#">首页</a></li>
+					<li class=""><a href="#">最新资讯</a></li>
+					<li class=""><a href="#">找老师</a></li>
+					<li class=""><a href="#">看直播</a></li>
+					<li class=""><a href="#">选课程</a></li>
+				</ul>
+				<form class="navbar-form pull-right visible-lg" action="http://www.qswangxiao.com/search" method="get">
+					<div class="form-group">
+						<input class="form-control" placeholder="请输入搜索的内容" >
+						<button class="button glyphicon glyphicon-search"></button>
+					</div>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
 <!--页面主体开始-->
 <div class="container">
 		<!--面包屑开始-->
