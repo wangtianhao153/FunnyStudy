@@ -14,5 +14,9 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         'teacher/listdelete/*',
         'teacher/createfirst',
+        'teacher/createsecond',
+        'teacher/createthird',
+        'teacher/editthumb',
+        'teacher/editCourseInfo',
     ];
 }
