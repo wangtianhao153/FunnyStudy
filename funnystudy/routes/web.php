@@ -23,3 +23,4 @@ Route::get('course/list','CourseController@index');
 Route::get("course/play/{id}",'CourseController@courseplay');
 /*登录*/
 Route::get('login','LoginController@index');
+Route::post('/submit','LoginController@validation');
