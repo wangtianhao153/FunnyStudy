@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\File;
 
 
-class CourseController extends Controller
+class CoursemanagerController extends Controller
 {
 //    进行所有操作之前的    登录验证
 
@@ -24,7 +24,7 @@ class CourseController extends Controller
         $courses = DB::table('course')->select('id','name','URL','brief')->where('delete_at',0)->where('teacherID',$userID)->get();
 //        将数据传入视图
 //        显示视图
-        return view('Course/index')->with('courses',$courses);
+        return view('Coursemanager/index')->with('courses',$courses);
     }
 
     /**
@@ -43,7 +43,7 @@ class CourseController extends Controller
             ->get();
 //        将数据传入视图
 //        显示视图
-        return view('Course/info')->with('course',$courseinfo[0])->with('chapters',$chapterinfo)->with('videos',$videoinfo);
+        return view('Coursemanager/info')->with('course',$courseinfo[0])->with('chapters',$chapterinfo)->with('videos',$videoinfo);
     }
 
     /**
@@ -55,7 +55,7 @@ class CourseController extends Controller
         $grades = DB::table('grade')->get();
         $subjects = DB::table('subjects')->get();
 //        显示视图
-        return view('Course/createcr')->with('grades',$grades)->with('subjects',$subjects);
+        return view('Coursemanager/createcr')->with('grades',$grades)->with('subjects',$subjects);
     }
 
     /**
@@ -64,7 +64,7 @@ class CourseController extends Controller
     public function createChapter()
     {
 //        显示视图
-        return view('Course/createch');
+        return view('Coursemanager/createch');
     }
 
     /**
@@ -76,7 +76,7 @@ class CourseController extends Controller
 //        查询该课程有哪些章节
         $chapters =  DB::table('chapter')->where('courseID',$id)->select('id','name')->get();
 //        显示视图
-        return view('Course/uploadview')->with('chapters',$chapters);
+        return view('Coursemanager/uploadview')->with('chapters',$chapters);
     }
 
 
