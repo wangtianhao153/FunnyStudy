@@ -117,7 +117,7 @@
     <div>
       <!-- 课程名及简介 -->
       <div class="col-md-7">
-        <div class="col-md-12 courseName"><h1>{{ $course->name }}</h1><input type="hidden" class="id" value="{{ $course->id }}"></div>
+        <div class="col-md-12 courseName"><h1>{{ $course->name }}</h1><input type="hidden" id="courseID" class="id" value="{{ $course->id }}"></div>
         <div class="col-md-12 brief"><p class="lead">{{ $course->brief }}</p><input type="hidden" class="id" value="{{ $course->id }}"></div>
       </div>
       <!-- 课程图片 -->
@@ -173,7 +173,7 @@ var uploader = WebUploader.create({
     swf: 'https://cdn.bootcss.com/webuploader/0.1.1/Uploader.swf',
 
     // 文件接收服务端。
-    server: '../test/fileupload.php',
+    server: '{{ url('teacher/editthumb') }}',
 
     // 选择文件的按钮。可选。
     // 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -212,49 +212,55 @@ uploader.on( 'fileQueued', function( file ) {
 
         $img.attr( 'src', src );
     }, 330, 200 );
-    var id=$('.courseName').find('.id').val();
+    var courseID=$('#courseID').val();
     uploader.option('formData',{
-            id:id,
+            courseID:courseID,
         });
     uploader.upload();
 });
-
+var flag = false;
 function edit(dom){
-  $(dom).dblclick(function(){
-    var val = $(this).text();
-    var div = $(this).parent();
-    div.parent().find('.operate').html('');
-    $(this).remove();
-    switch(dom){
+  if (flag){
+    return;
+  }else{
+    $(dom).dblclick(function(){
+      flag = true;
+      var val = $(this).text();
+      var div = $(this).parent();
+      div.parent().find('.operate').html('');
+      $(this).remove();
+      switch(dom){
         case 'p' :div.append('<textarea class="form-control" id="edit" rows="3" placeholder="'+val+'"></textarea>');break;
         default:div.append('<input type="text" class="form-control" id="edit" placeholder="'+val+'">');break;
       }
-    $('#edit').focus();
-    $('#edit').change(function(){
-      var editval = $(this).val();
-      var id = $(this).parent().find('.id').val();
-      $(this).remove();
-      switch(dom){
-        case 'p' :div.append('<p class="lead">'+editval+'</p>');break;
-        case 'h3':div.append('<h3>'+editval+'</h3>');break;
-        case 'h4':div.append('<h4>'+editval+'</h4>');break;
-        case 'h1':div.append('<h1>'+editval+'</h1>');break;
-      }
-      $.post('test.php',{type:dom,id:id});
-      edit(dom);
+      $('#edit').focus();
+      $('#edit').change(function(){
+        var editval = $(this).val();
+        var id = $(this).parent().find('.id').val();
+        $(this).remove();
+        switch(dom){
+          case 'p' :div.append('<p class="lead">'+editval+'</p>');break;
+          case 'h3':div.append('<h3>'+editval+'</h3>');break;
+          case 'h4':div.append('<h4>'+editval+'</h4>');break;
+          case 'h1':div.append('<h1>'+editval+'</h1>');break;
+        }
+        $.post('{{ url('teacher/editCourseInfo') }}',{type:dom,id:id,editval:editval});
+        edit(dom);
+      });
+      $('#edit').blur(function(){
+        var editval = $(this).attr('placeholder');
+        $(this).remove();
+        switch(dom){
+          case 'p':div.append('<p class="lead">'+editval+'</p>');break;
+          case 'h3':div.append('<h3>'+editval+'</h3>');break;
+          case 'h4':div.append('<h4>'+editval+'</h4>');break;
+          case 'h1':div.append('<h1>'+editval+'</h1>');break;
+        }
+        edit(dom);
+      });
+      flag = false;
     });
-    $('#edit').blur(function(){
-      var editval = $(this).attr('placeholder');
-      $(this).remove();
-      switch(dom){
-        case 'p':div.append('<p class="lead">'+editval+'</p>');break;
-        case 'h3':div.append('<h3>'+editval+'</h3>');break;
-        case 'h4':div.append('<h4>'+editval+'</h4>');break;
-        case 'h1':div.append('<h1>'+editval+'</h1>');break;
-      }
-      edit(dom);
-    });
-  });
+  }
 }
 edit('h3');
 edit('h1');
@@ -362,7 +368,7 @@ function changeDiv(first,second,divs){
   secondDiv.html(tmpDiv);
 }
 function newChapter(){
-  var id = $(this).find('.id').val();
+  var id = $("#courseID").val();
   $('#list').append('<div>'+
       '<div class="col-md-12 chapter">'+
         '<div class="col-md-8"><input type="text" class="form-control" id="newEdit" placeholder="请输入章节名"></div><div class="operate edit-operate col-md-4"></div>'+
@@ -373,9 +379,9 @@ function newChapter(){
       var div=$(this).parent();
       $(this).remove();
       div.append('<h3>'+editval+'</h3>');
-      $.post('test.php',{editval:editval,id:id},function(data){
-        var newdata = JSON.parse(data); 
-        // $(this).parent().append('<input type="hidden" class="id" value="'+newdata.id+'">');
+      $.post('{{ url('teacher/editCourseInfo') }}',{type:'newChapter',editval:editval,id:id},function(data){
+//        var newdata = JSON.parse(data);
+         div.append('<input type="hidden" class="id" value="'+data+'">');
       });
     });
   operate();

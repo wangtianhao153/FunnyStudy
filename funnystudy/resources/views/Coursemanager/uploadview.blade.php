@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>教师课程管理创建课程</title>
+    <title>视频上传页</title>
 
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
@@ -94,6 +94,9 @@
   </body>
   <script type="text/javascript">
   var list = $('#thelist');
+  $('.btn-info').unbind('click').click(function () {
+    $(location).attr('href', '{{ url('teacher/index') }}');
+  });
 $('.pick').unbind('click').click(function(){
   if($("#videoName").val() == ''){
     addWarning('请输入视频名称。','错误!','danger');
@@ -117,7 +120,7 @@ var uploader = WebUploader.create({
     swf: 'https://cdn.bootcss.com/webuploader/0.1.1/Uploader.swf',
 
     // 文件接收服务端。
-    server: '../test/fileupload.php',
+    server: '{{ url('teacher/createthird') }}',
 
     // 选择文件的按钮。可选。
     // 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -134,15 +137,14 @@ var uploader = WebUploader.create({
 });
 // 选择文件之后的操作
   uploader.on( 'fileQueued', function( file ) {
-    console.log(file);
     // 添加到上传列表
     list.append('<div id="'+file.id+'" class="item">'+
-    '<label for="chapterName" class="col-sm-2 control-label">章节:</label><div class="col-sm-10"><p class="form-control-static">'+$('#chapterName').children('option:selected').text()+'</p></div>'+
-    '<label for="videoName" class="col-sm-2 control-label">视频名称:</label><div class="col-sm-10"><p class="form-control-static">'+$("#videoName").val()+'</p></div>'+
+    '<label for="chapterName" class="col-sm-2 control-label">章节:</label><div class="col-sm-10"><p class="form-control-static">'+$('#chapterName').children('option:selected').text()+'</p><input type="hidden" class="chapterID" value="'+$('#chapterName').val()+'"/></div>'+
+    '<label for="videoName" class="col-sm-2 control-label">视频名称:</label><div class="col-sm-10"><p class="form-control-static videoName">'+$("#videoName").val()+'</p></div>'+
     '<label for="fileName" class="col-sm-2 control-label">文件名:</label><div class="col-sm-10"><p class="form-control-static">'+file.name+'</p></div>'+
     '<label for="condition" class="col-sm-2 control-label condition">等待上传</label>'+
     '<div class="progress col-sm-10 edit-progress">'+
-      '<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: 0%;">'+
+      '<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">'+
       '0%'+
       '</div>'+
     '</div>'+
@@ -158,20 +160,31 @@ uploader.on( 'uploadProgress', function( file, percentage ) {
 
     $li.find('.condition').text('上传中');
 
-    $percent.css( 'width', percentage * 100 + '%' );
-    $percent.text( percentage * 100 + '%' );
+    $percent.css( 'width', parseInt(percentage * 100) + '%' );
+    $percent.text( parseInt(percentage * 100) + '%' );
 });
-$('#ctlBtn').on( 'click', function() {
-  uploader.option('formData',{
-//            chapterID:chapterID,
-            videoName:videoName,
-        });
+//  上传参数设置
+  uploader.on( 'uploadBeforeSend', function( block, data ) {
+    // block为分块数据。
+
+    // file为分块对应的file对象。
+    var file = block.file;
+
+
+    // 修改data可以控制发送哪些携带数据。
+    var fileid = file.id;
+    data.chapterID = $('#'+fileid).find('.chapterID').val();
+    data.videoName = $('#'+fileid).find('.videoName').text();
+  });
+//  点击上传视频
+  $('#ctlBtn').on( 'click', function() {
   uploader.upload();
 });
+//  上传成功操作
 uploader.on( 'uploadSuccess', function( file ) {
     $( '#'+file.id ).find('.condition').text('上传成功');
 });
-
+//上传错误操作
 uploader.on( 'uploadError', function( file ) {
     $( '#'+file.id ).find('.condition').text('上传出错');
 });

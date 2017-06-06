@@ -60,9 +60,9 @@
     <!-- 表单提交 -->
     <form class="form-horizontal">
       <div class="form-group">
-        <label for="chapterName[]" class="col-sm-2 control-label">章节1</label>
+        <label class="col-sm-2 control-label">章节1</label>
         <div class="col-sm-9">
-          <input type="text" class="form-control" placeholder="章节名">
+          <input type="text" class="form-control" name="chapterName[]" placeholder="章节名">
         </div>
         <label class="col-sm-1 edit-pad"><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></button></label>
       </div>
@@ -86,9 +86,9 @@
   function add(index){
     var chapter = index+1;
     var html='<div class="form-group">'+
-        '<label for="courseName[]" class="col-sm-2 control-label">章节'+chapter+'</label>'+
+        '<label class="col-sm-2 control-label">章节'+chapter+'</label>'+
         '<div class="col-sm-9">'+
-          '<input type="text" class="form-control" placeholder="章节名">'+
+          '<input type="text" class="form-control" name="chapterName[]" placeholder="章节名">'+
         '</div>'+
         '<label class="col-sm-1 edit-pad"><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></button></label>'+
       '</div>';
@@ -281,7 +281,7 @@
       });
       if (flag) {
         $('.form-horizontal').attr('method','post');
-        $('.form-horizontal').attr('action',"{{ url('teacher/uploadvideo') }}")
+        $('.form-horizontal').attr('action',"{{ url('teacher/createsecond') }}");
         $('.form-horizontal').submit();
       }    
     });

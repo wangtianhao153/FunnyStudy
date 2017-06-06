@@ -18,6 +18,10 @@ Route::get('teacher/createchapter','CoursemanagerController@createChapter');
 Route::get('teacher/uploadvideo/{id}','CoursemanagerController@uploaddisplay');
 Route::post('teacher/listdelete/{id}','CoursemanagerController@listdelete');
 Route::post('teacher/createfirst','CoursemanagerController@createfirst');
+Route::any('teacher/createsecond','CoursemanagerController@createsecond');
+Route::post('teacher/createthird','CoursemanagerController@createthird');
+Route::post('teacher/editthumb','CoursemanagerController@editthumb');
+Route::post('teacher/editCourseInfo','CoursemanagerController@editCourseInfo');
 /*课程列表*/
 Route::get('course/list','CourseController@index');
 Route::get("course/play/{id}",'CourseController@courseplay');
