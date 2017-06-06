@@ -22,6 +22,9 @@ Route::any('teacher/createsecond','CoursemanagerController@createsecond');
 Route::post('teacher/createthird','CoursemanagerController@createthird');
 Route::post('teacher/editthumb','CoursemanagerController@editthumb');
 Route::post('teacher/editCourseInfo','CoursemanagerController@editCourseInfo');
+Route::post('teacher/videoDelete/{id}','CoursemanagerController@videoDelete');
+Route::post('teacher/chapterDelete/{id}','CoursemanagerController@chapterDelete');
+Route::post('teacher/reorder','CoursemanagerController@reorder');
 /*课程列表*/
 Route::get('course/list','CourseController@index');
 Route::get("course/play/{id}",'CourseController@courseplay');

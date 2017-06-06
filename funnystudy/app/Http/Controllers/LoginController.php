@@ -13,7 +13,9 @@ class LoginController extends Controller
     }
     public function validation(Request $request){
         $username = $request->get('email');
+        $username = (string)$username;
         $password = $request->get('password');
+        $password = (string)$password;
         $psd = DB::table('users')->where('username',$username)->value('password');
         $num = count($psd);
 //        $arr['flag']=1;
@@ -23,13 +25,15 @@ class LoginController extends Controller
 //                $this->ajaxReturn($arr,json);
                 $name = DB::table('users')->where('username',$username)->value('name');
                 $id = DB::table('users')->where('username',$username)->value('id');
-                $request->Msession()->put('username',$name);
+                $request->session()->put('username',$name);
                 $request->session()->put('id',$id);
-                return view('login/login');
+                return view('index/index');
             }else{
 //                $this->ajaxReturn($arr,json);
+                return redirect('login')->with('message', '用户名或密码错误');
             }
         }else{
+                return redirect('login')->with('message', '用户名或密码错误');
 //            $this->ajaxReturn($arr,json);
         }
 

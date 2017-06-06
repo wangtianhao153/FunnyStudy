@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>教师课程管理创建课程</title>
-
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-      .tmp_nav{
-        height: 130px;
-      }
+@extends('header')
+@section('title','教师课程管理章节创建')
+@section('style')
+  <style type="text/css">
       .left_nav{
         width:15%;
         margin-left: 8%;
@@ -34,14 +25,11 @@
         padding: 5px 8px;
       }
     </style>
-  </head>
-  <body>
-  <!-- 导航栏 -->
-<div class="tmp_nav"></div>
-
-
-<!-- 内容主题 -->
-
+  @endsection
+@section('header')
+  @parent
+  @endsection
+@section('content')
 <!-- 左导航 -->
   <div class="left_nav">
     <ul class="nav nav-pills nav-stacked">
@@ -76,12 +64,11 @@
   <div class="form-group" id="warning"></div>
     </form>
   </div>
+@endsection
 <!-- 底部 -->
 <div></div>
 
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
-  </body>
+@section('javascript')
   <script>
   function add(index){
     var chapter = index+1;
@@ -297,4 +284,4 @@ $('#warning').append('<div class="alert alert-'+type+' alert-dismissible col-sm-
 '</div>');
 }
   </script>
-</html>
+@endsection

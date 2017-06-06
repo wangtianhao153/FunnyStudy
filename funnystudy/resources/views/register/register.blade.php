@@ -42,13 +42,7 @@
                 </div>
             </nav>
         </header>
-    <!--面包屑开始-->
-    <div style="margin-left: 225px;margin-right: 222px">
-    <ol class="breadcrumb">
-        <li><a href="#">首页</a></li>
-        <li class="active">注册</li>
-    </ol>
-    </div>
+
     <!--注册-->
     <div class="login">
     <form action="#" method="post">

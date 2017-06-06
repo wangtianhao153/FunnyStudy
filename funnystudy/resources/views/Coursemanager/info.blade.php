@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{{ $course->name }}</title>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-      body{
-        padding-top: 70px;
-      }
+@extends('header')
+@section('title',$course->name)
+@section('style')
+  <style type="text/css">
       .left_nav{
         width:15%;
         margin-left: 8%;
@@ -56,47 +48,11 @@
         height: 200px;
       }
       </style>
-  <body>
-  <!-- 导航栏 -->
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header col-md-1.5">
-      <a class="navbar-brand" href="#">趣学教育</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <div class="navbar-left col-md-7">
-      <ul class="nav navbar-nav navbar-right col-md-12 text-center">
-        <li class="active col-md-3"><a href="#">首页 <span class="sr-only">(current)</span></a></li>
-        <li class="col-md-3"><a href="#">找老师</a></li>
-        <li class="col-md-3"><a href="#">选课程</a></li>
-        <li class="col-md-3.5"><a href="#">最新资讯</a></li>
-      </ul>
-    </div>
-      <form class="navbar-form navbar-right col-md-3">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search" value="请输入想要搜索的课程">
-        </div>
-        <button type="submit" class="btn btn-default">serch</button>
-      </form>    
-      <ul class="nav navbar-nav navbar-right col-md-1.5">
-      
-      <li class="dropdown">  
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:0px 15px 0px 15px"><img src="image/test.png" height="50" width="50" class="img-circle"> <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">个人中心</a></li>
-            <li><a href="#">账户管理</a></li>
-            <li><a href="#">退出登录</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-<!-- 内容主题 -->
-
+  @endsection
+@section('header')
+  @parent
+  @endsection
+@section('content')
 <!-- 左导航 -->
   <div class="left_nav">
     <ul class="nav nav-pills nav-stacked">
@@ -110,7 +66,6 @@
     <ol class="breadcrumb">
       <li><a href="#">首页</a></li>
       <li><a href="#">课程管理</a></li>
-      <li><a href="#">课程列表</a></li>
       <li class="active">课程详情</li>
     </ol>
     <!-- 课程详情 -->
@@ -151,11 +106,10 @@
 
     </div>
   </div>
+@endsection
+@section('javascript')
 
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
-    <script src="https://cdn.bootcss.com/webuploader/0.1.1/webuploader.js"></script>
-  </body>
+  <script src="https://cdn.bootcss.com/webuploader/0.1.1/webuploader.js"></script>
   <script type="text/javascript">
 
 $('#Img').hover(function(){
@@ -275,7 +229,7 @@ function operate(){
   var id=$(this).find('.id').val();
   if(thisclass == 'col-md-12 bkgc'){
     $('#list').find('.operate').html('');
-    $(this).find('.operate').append('<button type="button" class="btn btn-info"><span class="glyphicon glyphicon-arrow-up"></span></button><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-arrow-down"></span></button><a class="btn btn-info" href="视频播放页.html?id='+id+'">详情</a><button type="button" class="btn btn-danger">删除</button>'); 
+    $(this).find('.operate').append('<button type="button" class="btn btn-info"><span class="glyphicon glyphicon-arrow-up"></span></button><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-arrow-down"></span></button><a class="btn btn-info" href="{{ url('course/play') }}'+'/'+id+'">详情</a><button type="button" class="btn btn-danger">删除</button>');
     $('.btn-danger').click(function(){
       Ewin.confirm({ message: "确认要删除这一个视频吗？",btnok: "删除" }).on(function (e) {
           if (!e) {
@@ -283,7 +237,8 @@ function operate(){
           }
           div.remove();
           // ajax操作
-          $.post('deleteVideo.php',{id:id});
+        var url = '{{ url('teacher/videoDelete') }}' + '/' + id ;
+          $.post(url);
           return;
         });
     });
@@ -296,7 +251,7 @@ function operate(){
         // 交换前先获取ID
         var firstID = div.parent().children('div').eq(first).find('.id').val();
         var secondID = div.parent().children('div').eq(second).find('.id').val();
-        $.post('test.php',{firstID:firstID,secondID:secondID});
+        $.post('{{ url('teacher/reorder') }}',{type:1,firstID:firstID,secondID:secondID});
         changeDiv(first,second,div.parent());
       }
     });
@@ -307,13 +262,14 @@ function operate(){
         var second = first+1;
         var firstID = div.parent().children('div').eq(first).find('.id').val();
         var secondID = div.parent().children('div').eq(second).find('.id').val();
-        $.post('test.php',{firstID:secondID,secondID:firstID});
+        $.post('{{ url('teacher/reorder') }}',{type:1,firstID:secondID,secondID:firstID});
         changeDiv(first,second,div.parent());
       }
     });
   }else{
     $('#list').find('.operate').html('');
-    $(this).find('.operate').append('<button type="button" class="btn btn-info"><span class="glyphicon glyphicon-arrow-up"></span></button><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-arrow-down"></span></button><a class="btn btn-info" href="教师课程管理上传视频.html">添加</a><button type="button" class="btn btn-danger">删除</button>');
+    var courseID=$('#courseID').val();
+    $(this).find('.operate').append('<button type="button" class="btn btn-info"><span class="glyphicon glyphicon-arrow-up"></span></button><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-arrow-down"></span></button><a class="btn btn-info" href="{{ url('teacher/uploadvideo/') }}'+'/'+courseID+'">添加</a><button type="button" class="btn btn-danger">删除</button>');
     $('.btn-danger').click(function(){
       Ewin.confirm({ message: "确认要删除本章吗?视频不可恢复!",btnok: "删除" }).on(function (e) {
           if (!e) {
@@ -321,7 +277,8 @@ function operate(){
           }
           div.parent().remove();
           // ajax操作
-          $.post('deleteChapter.php',{id:id});
+        var url = '{{ url('teacher/chapterDelete') }}'+'/'+id;
+          $.post(url);
           return;
         });
     });
@@ -333,7 +290,7 @@ function operate(){
         // 交换前先获取ID
         var firstID = $('#list').children('div').eq(first).children('div:first-child').find('.id').val();
         var secondID = $('#list').children('div').eq(second).children('div:first-child').find('.id').val();
-        $.post('test.php',{firstID:firstID,secondID:secondID});
+        $.post('{{ url('teacher/reorder') }}',{type:2,firstID:firstID,secondID:secondID});
         changeDiv(first,second,$('#list'));
         operate();
       }
@@ -345,7 +302,7 @@ function operate(){
         var second = first+1;
         var firstID = $('#list').children('div').eq(first).children('div:first-child').find('.id').val();
         var secondID = $('#list').children('div').eq(second).children('div:first-child').find('.id').val();
-        $.post('test.php',{firstID:secondID,secondID:firstID});
+        $.post('{{ url('teacher/reorder') }}',{type:2,firstID:secondID,secondID:firstID});
         changeDiv(first,second,$('#list'));
         operate();
       }
@@ -380,7 +337,6 @@ function newChapter(){
       $(this).remove();
       div.append('<h3>'+editval+'</h3>');
       $.post('{{ url('teacher/editCourseInfo') }}',{type:'newChapter',editval:editval,id:id},function(data){
-//        var newdata = JSON.parse(data);
          div.append('<input type="hidden" class="id" value="'+data+'">');
       });
     });
@@ -547,4 +503,4 @@ function newChapter(){
 })(jQuery);
 
   </script>
-</html>
+  @endsection
