@@ -258,7 +258,7 @@
     $('.btn-info').unbind('click').click(function(){
       $('.alert-dismissible').alert('close');
       var flag = true;
-      $('input').each(function(){
+      $('.form-horizontal input').each(function(){
         if ($(this).val()=='') {
           flag = false;
           addWarning('章节名不能为空。','错误!','danger');

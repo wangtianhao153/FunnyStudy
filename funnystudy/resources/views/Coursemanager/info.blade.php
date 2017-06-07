@@ -76,7 +76,7 @@
         <div class="col-md-12 brief"><p class="lead">{{ $course->brief }}</p><input type="hidden" class="id" value="{{ $course->id }}"></div>
       </div>
       <!-- 课程图片 -->
-      <div class="col-md-5" id="Img"><div class="file-item thumbnail"><img src="{{ $course->URL }}" alt="..." class="img-thumbnail"></div></div>
+      <div class="col-md-5" id="Img"><div class="file-item thumbnail"><img src="{{ asset($course->URL) }}" alt="..." class="img-thumbnail"></div></div>
       <!-- 图片上传 -->
       <div id="picker" style="display:none;"></div>
     <!-- 新增章节按钮 -->
