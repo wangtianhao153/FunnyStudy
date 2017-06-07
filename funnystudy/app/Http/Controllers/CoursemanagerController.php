@@ -186,7 +186,7 @@ class CoursemanagerController extends Controller
 //        获取原图片路径
         $oldPath = DB::table('course')->select('URL')->where('id',$courseID)->get();
 //        删除原图片
-        Storage::delete($oldPath);
+        Storage::delete($oldPath[0]->URL);
 //        更改数据库图片路径
         DB::table('course')->where('id',$courseID)->update([
             'URL'   =>  $URL,
