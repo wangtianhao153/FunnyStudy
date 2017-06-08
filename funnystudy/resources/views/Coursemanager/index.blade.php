@@ -58,7 +58,7 @@
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <a href="{{ url("teacher/info/$course->id") }}">
-        <img src="{{ $course->URL }}" alt="">
+        <img style="height: 200px;width: 330px;" src="{{ asset($course->URL) }}" alt="">
         <div class="caption">
           <h3>{{ $course->name }}</h3>
           <p>{{ $course->brief }}</p>

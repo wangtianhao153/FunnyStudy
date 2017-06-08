@@ -38,3 +38,6 @@ Route::get('exits','LoginController@exits');
 //注册
 Route::get('register','RegisterController@index');
 Route::post('/sbt','RegisterController@register');
+/*教师列表*/
+Route::get('teacherdisplay/listdisplay','TeacherDisplayController@listDisplay');
+Route::get('teacherdisplay/information/{id}','TeacherDisplayController@information');
