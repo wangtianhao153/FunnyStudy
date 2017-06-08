@@ -44,7 +44,6 @@
 		</style>
 	@endsection
 </head>
-<body>
 <nav class="navbar navbar-default navbar-fixed-top">
 <!--页面主体开始-->
 		@section('content')
@@ -127,4 +126,3 @@
 </div>
 	@stop
 <!--页面主体结束-->
-</body>
