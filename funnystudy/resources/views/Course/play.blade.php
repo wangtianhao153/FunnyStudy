@@ -1,41 +1,99 @@
 @extends('header')
-@section('title','课程列表')
+@section('title','视频播放页')
 @section('style')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/video-js.css') }}">
     <style type="text/css">
-    .test{
-    width:300px;
-    height:400px;
-    background-color:#FF0000;
-    float:left;
-    }
+        #video{
+            float: left;
+            width: 740px;
+            margin-left: 13%;
+            margin-top: 30px;
+        }
+        .list{
+            float: left;
+            margin-top: 30px;
+            width: 20%;
+            height: 456px;
+            background-color: #222222;
+            color: #999999;
+            overflow-y:auto;
+        }
+        .list h1{
+            text-align: center;
+        }
+        .list .chapter{
+            width: 90%;
+            float: right;
+        }
+        .list .chapter .video{
+            width: 85%;
+            float: right;
+        }
+        .videoAction{
+            color: #337ab7;
+        }
+        .videoHover{
+            color: #666666;
+        }
     </style>
 @endsection
 @section('content')
+    <!--面包屑开始-->
     <div class="container">
-        <!--面包屑开始-->
         <ol class="breadcrumb">
-            <li><a href="#">{{$videoinfo[0]->coursename}}</a></li>
-            <li><a href="#">{{$videoinfo[0]->chaptername}}</a> </li>
-            <li class="active">{{$videoinfo[0]->videoname}}</li>
+            <li><a href="{{ url('index') }}">首页</a></li>
+            <li class="active">{{ $courseName }}</li>
+            <li class="active" id="videoName">视频名</li>
         </ol>
     </div>
     <!--视频播放开始-->
-    <div>
-        <video oncontextmenu="return false;" id="my-player" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="730" height="456" poster="" data-setup="{}">
-            <source type='video/mp4'/>
-            <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that
-                <a href="http://videojs.com/html5-video-support/" target="_blank">
-                    supports HTML5 video
-                </a>
-            </p>
-        </video>
-        <div class="play"></div>
+    <div id="video">
+        <div class="embed-responsive embed-responsive-4by3">
+            <iframe class="embed-responsive-item"></iframe>
+        </div>
+    </div>
+    <div class="list">
+        <h1>{{ $courseName }}</h1>
+        @foreach($chapters as $chapter)
+        <div class="chapter">
+            <h3>{{ $chapter->name }}</h3>
+            @foreach($videos as $video)
+                @if($video->c_id == $chapter->id)
+            <div class="video"><input type="hidden" value="{{ $video->id }}"><h4>{{ $video->name }}</h4></div>
+                @endif
+                @endforeach
+        </div>
+            @endforeach
     </div>
 @endsection
 @section('javascript')
-<script type="text/javascript" src="{{ asset('js/video.min.js') }}"></script>
+
 <script type="text/javascript">
-    $("#my-player").children("source").attr("src","{{asset($videoUrl[0]->URL)}}");
+$(document).ready(function () {
+
+    var actionDiv = $('.list').find('.video').eq(0);
+    changeVideo(actionDiv);
+    $('.list').find('.video').unbind('click').on('click',function () {
+        changeVideo($(this));
+    });
+});
+    function changeVideo(actionDiv) {
+        var videoName = actionDiv.text();
+        var videoId = actionDiv.children('input').val();
+
+        $('#videoName').text(videoName);
+        $('title').html(videoName);
+
+        $('#video iframe').attr('src','{{ url('videoPlay').'/' }}'+videoId);
+
+        $('.list').find('.video').removeClass('videoAction');
+        actionDiv.addClass('videoAction');
+
+        $('.list').find('.video').hover(function () {
+            $(this).addClass('videoHover');
+        },function () {
+            $(this).removeClass('videoHover');
+        });
+    }
+
 </script>
 @endsection

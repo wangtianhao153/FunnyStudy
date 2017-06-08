@@ -41,11 +41,12 @@ class CoursemanagerController extends Controller
     {
 //        从数据库获取视图所需数据
 //        根据$id查询课程表course,章节表chapter,查询字段course.id,course.name,course.URL,course.cost,chapter.id,chapter.name
-        $courseinfo = DB::table('course')->select('id','name','URL','brief')->where('delete_at',0)->where('id',$id)->get();
+        $courseinfo = DB::table('course')->select('id','name','URL','brief')->where('id',$id)->get();
         $chapterinfo = DB::table('chapter')->select('id','name')->where('courseID',$id)->orderBy('order', 'asc')->get();
         $videoinfo = DB::table('video')
             ->join('chapter','video.chapterid','=','chapter.id')
             ->select('chapter.id as c_id','video.id','video.name')
+            ->where('chapter.courseID',$id)
             ->orderBy('video.order', 'asc')
             ->get();
 //        将数据传入视图

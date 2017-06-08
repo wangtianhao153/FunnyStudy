@@ -27,7 +27,8 @@ Route::post('teacher/chapterDelete/{id}','CoursemanagerController@chapterDelete'
 Route::post('teacher/reorder','CoursemanagerController@reorder');
 /*课程列表*/
 Route::get('course/list','CourseController@index');
-Route::get("course/play/{id}",'CourseController@courseplay');
+Route::get('course/play/{id}','CourseController@courseplay');
+Route::get("videoPlay/{id}",'CourseController@videoPlay');
 Route::get('course/list/subserch/{id}','CourseController@subjectserch');
 Route::get('course/list/graserch/{id}','CourseController@gradesearch');
 Route::get('course/{id}','CourseController@coursedetails');
