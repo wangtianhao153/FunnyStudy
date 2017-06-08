@@ -1,0 +1,93 @@
+.com-author-link
+{
+  font-size: 20px;
+}
+
+.teacher-box .es-teacher-list .media .media-body .teacher-info {
+    position: absolute;
+    top: 50px;
+    color: #999;
+}
+.teacher-box .es-teacher-list .media .media-body .course-title {
+    position: absolute;
+    top: 15px;
+    left: 100px;
+    color: #999;
+}
+.teacher-box .es-teacher-list .media:hover .media-body .com-author-link {
+    /* color: #f59200; */
+}
+.teacher-box .es-teacher-list .media .media-body .course-num {
+    position: absolute;
+    bottom: 15px;
+    color: #999;
+}
+.teacher-box .es-teacher-list .media .media-left img {
+    width: 150px;
+    height: 150px;
+}
+.teacher-box .es-teacher-list a {
+    text-decoration: none;
+}
+a:hover {
+    color: #c30d22;
+}
+.teacher-box .es-teacher-list .media .media-left {
+    /* display: table-cell; */
+    /* vertical-align: top; */
+    /* background-color: #000; */
+}
+.teacher-box .es-teacher-list .media .media-body {
+    position: relative;
+    display: table-cell;
+    vertical-align: top;
+    width: 100%;
+    padding-left: 20px;
+}
+.teacher-box .es-teacher-list .media {
+    border: 1px solid #ddd;
+}
+.teacher-box .es-teacher-list {
+    overflow: hidden;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    margin-top: -15px;
+}
+.teacher-box .row {
+    margin-right: 15px;
+    margin-bottom: 0;
+}
+.teacher-box {
+    background-color: #fff;
+}
+.nav-stacked {
+    background-color: #fff;
+    padding-left: 50px;
+    padding-bottom: 20px;
+}
+.nav-stacked ul {
+    margin-right: 15px;
+    border-bottom: 1px dashed #dedede;
+    line-height: 2;
+}
+.nav-stacked ul li a {
+    text-decoration: none;
+    color: #999;
+}
+.nav-stacked ul {
+    margin-right: 15px;
+    border-bottom: 1px dashed #dedede;
+    line-height: 2;
+}
+.nav-stacked ul li a {
+    text-decoration: none;
+    color: #999;
+}
+.breadcrumb
+{
+	font-size:16px;
+}
+.nav-stacked
+{
+	font-size:16px;
+}

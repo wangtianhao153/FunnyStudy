@@ -1,0 +1,289 @@
+.qs-section {
+  padding: 20px 0;
+}
+.qs-section.section-white {
+  background: #fff;
+}
+.qs-section .section-more {
+  margin-top: 40px;
+  text-align: center;
+}
+.qs-section-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.qs-course-cat {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.qs-course-cat .nav {
+  display: inline-block;
+}
+.qs-course-item {
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  background-color: #fff;
+}
+.qs-course-item .course-img {
+  position: relative;
+  margin-bottom: 10px;
+  overflow: hidden;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.qs-course-item .course-img img {
+  width: 100%;
+}
+
+.qs-teacher-item {
+  position: relative;
+  margin-bottom: 20px;
+  text-align: center;
+  background: #F3F7F6;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.qs-teacher-item .teacher-img {
+  padding-top: 25px;
+  padding-bottom: 20px;
+}
+.qs-teacher-item .teacher-name {
+  font-size: 22px;
+  color: #626B80;
+  margin-bottom: 10px;
+}
+.course-list .course-item:hover {
+    transform: translateY(-6px);
+    -webkit-transform: translateY(-6px);
+    -moz-transform: translateY(-6px);
+    box-shadow: 0 26px 40px -24px rgba(0, 36, 100, 0.3);
+    -webkit-box-shadow: 0 26px 40px -24px rgba(0, 36, 100, 0.3);
+    -moz-box-shadow: 0 26px 40px -24px rgba(0, 36, 100, 0.3);
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+
+.link-dark:hover, .link-light:hover, .link-white:hover, .link-lighter:hover {
+    color: #c30d22 !important;
+}
+.link-dark:hover {
+    color: #46c37b !important;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.qs-teacher-item .teacher-bottom {
+    background: #E8ECF6;
+    text-align: left;
+    color: #383B48;
+    font-size: 12px;
+    padding: 35px 20px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.qs-teacher-item .teacher-name {
+    font-size: 22px;
+    color: #626B80;
+    margin-bottom: 10px;
+}
+.avatar-lg {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width: 120px !important;
+    height: 120px !important;
+}
+.qs-teacher-item .teacher-name {
+    font-size: 22px;
+    color: #626B80;
+    margin-bottom: 10px;
+}
+
+.qs-teacher-item .teacher-position {
+    color: #99A0B4;
+    margin-bottom: 25px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+.course-list .course-item .course-img {
+    /* position: relative; */
+    /* overflow: hidden; */
+    /* border-top-left-radius: 4px; */
+    /* border-top-right-radius: 4px; */
+}
+.qs-section-header .title {
+    font-size: 28px;
+    color: #313131;
+    margin-bottom: 15px;
+}
+.qs-section-header .subtitle {
+    color: #ccc;
+}
+.btn-ghost-default:hover {
+    border-color: #c30d22;
+    color: #c30d22;
+}
+.btn:hover, .btn:focus, .btn.focus, .btn.active {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    background-color: #c30d22;
+}
+
+.btn-ghost-default {
+    padding: 8px 25px;
+    border: 1px solid #ccc;
+    color: #919191;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+.btn {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.qs-section-header .title {
+    font-size: 28px;
+    color: #313131;
+    margin-bottom: 15px;
+}
+
+.nav-pills > li > a {
+    padding: 8px 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+.nav-pills > li > a {
+    padding: 10px 15px;
+    color: #616161;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.course-list .course-item .course-img .img-responsive {
+    width: 100%;
+    padding: 10px;
+}
+.course-list .course-item {
+    transition: all 0.3s ease;
+}
+.course-list .course-item {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    border: 1px solid #e4ecf3;
+    background-color: #fff;
+}
+ul
+{
+	list-style:none;
+}
+a:link{
+		text-decoration:none;   /* 指正常的未被访问过的链接*/
+	}
+	a:visited{
+		text-decoration:none; /*指已经访问过的链接*/
+	}
+	a:hover{
+		text-decoration:none;/*指鼠标在链接*/
+		color: red;
+	}
+	a:active{
+		text-decoration:none;/* 指正在点的链接*/ 
+	}
+.navbar-brand
+{
+    font-size:50px;
+}
+.navbar-letf
+{
+  position: absolute;
+  margin-left:25%; 
+  font-size:18px;
+}
+.visible-lg
+{
+  position: absolute;
+  margin-left:70%; 
+}
+.navbar-right
+{
+  position: absolute;
+  margin-left:85%; 
+}
+/*导航栏结束*/
+.qs-panel-title
+{
+  font-size: 28px;
+  margin-top: 30px;
+  margin-left:13%; 
+}
+.qs-panel-title small
+{
+	font-size: 15px;
+	color: #ccc;
+	padding-left: 10px;
+}
+.InformationFigure #myCarousel1
+{
+  width: 350px;
+  height: 280px;
+  margin-left: 12%;
+  margin-top: 2%;
+}
+.InformationFigure .carousel-inner
+{
+  width: 100%;
+  height: 100%;
+}
+.InformationFigure .item
+{
+  width: 100%;
+  height: 100%;
+}
+.list-group
+{
+  position: absolute;
+  margin-top:-21%;
+  margin-left:  50%;
+  width: 500px;
+  
+}
+.list-group li
+{
+  font-size: 18px;
+  margin-top:15px;
+  margin-left:-100px;
+}
+.list-group li span
+{
+  float: right;
+}
+.course-info .title
+{
+	height: 30px;
+	padding-left:25px; 
+}
