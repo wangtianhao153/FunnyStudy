@@ -14,9 +14,7 @@ class CoursemanagerController extends Controller
 //    进行所有操作之前的    登录验证
     public function __construct()
     {
-//        清空临时文件夹TmpImg
-        $path = public_path('TmpImg');
-        $this->deleteAll($path);
+        //
     }
 
 //页面显示
@@ -30,10 +28,6 @@ class CoursemanagerController extends Controller
 //        从数据库获取视图所需数据
 //        根据$userID查询课程表course,查询字段id,name,URL,cost
         $courses = DB::table('course')->select('id','name','URL','brief')->where('delete_at',0)->where('teacherID',$userID)->get();
-        foreach ($courses as $k => $course)
-        {
-            $courses[$k]->URL = $this->tmp_img($course->id,'course','URL');
-        }
 //        将数据传入视图
 //        显示视图
         return view('Coursemanager/index')->with('courses',$courses);
@@ -54,7 +48,6 @@ class CoursemanagerController extends Controller
             ->select('chapter.id as c_id','video.id','video.name')
             ->orderBy('video.order', 'asc')
             ->get();
-        $courseinfo[0]->URL = $this->tmp_img($courseinfo[0]->id,'course','URL');
 //        将数据传入视图
 //        显示视图
         return view('Coursemanager/info')->with('course',$courseinfo[0])->with('chapters',$chapterinfo)->with('videos',$videoinfo);
@@ -120,6 +113,7 @@ class CoursemanagerController extends Controller
         $brief = $request->get('briefCourse');
         $subjectID = $request->get('subjectID');
         $URL = $request->file('file')->store('public/thumb');
+        $URL = Storage::url($URL);
 //        数据插入
         $id = DB::table('course')->insertGetId([
             'gradeID'   =>  $gradeID,
@@ -163,7 +157,8 @@ class CoursemanagerController extends Controller
     public function createthird(Request $request)
     {
 //        视频上传
-        $path = $request->file('file')->store('uploads');
+        $path = $request->file('file')->store('public/video');
+        $URL = Storage::url($path);
 //        视频上传的参数
         $chapterID = $request->get('chapterID');
         $videoName = $request->get('videoName');
@@ -171,7 +166,7 @@ class CoursemanagerController extends Controller
         $id = DB::table('video')->insertGetId([
             'name'  =>  $videoName,
             'chapterID' =>  $chapterID,
-            'URL'   =>  $path,
+            'URL'   =>  $URL,
         ]);
         DB::table('video')->where('id',$id)->update(['order'=>$id]);
     }
@@ -183,6 +178,7 @@ class CoursemanagerController extends Controller
         dump($courseID);
 //        上传图片
         $URL = $request->file('file')->store('public/thumb');
+        $URL = Storage::url($URL);
 //        获取原图片路径
         $oldPath = DB::table('course')->select('URL')->where('id',$courseID)->get();
 //        删除原图片
@@ -274,41 +270,5 @@ class CoursemanagerController extends Controller
         $secondOrder = $second[0]->order;
         DB::table($table)->where('id',$firstID)->update(['order'=>$secondOrder]);
         DB::table($table)->where('id',$secondID)->update(['order'=>$firstOrder]);
-    }
-
-    /**
-     * @param $id   数据表主键ID
-     * @param $table    数据表名
-     * @param $field    数据表文件路径字段
-     * @return string   tmp文件路径
-     */
-    public function tmp_img($id,$table,$field)
-    {
-        $result = DB::table($table)->select($field)->where('id',$id)->get();
-        $URL = $result[0]->URL;
-        $tmp_file = tempnam(public_path('TmpImg'),$id);
-        $is_success = file_put_contents($tmp_file,Storage::get($URL));
-        $tmp_name = strstr($tmp_file,'TmpImg');
-        return $tmp_name;
-    }
-
-    /**
-     * @param $path 要清空的文件夹路径
-     */
-    protected function deleteAll($path)
-    {
-        $op = dir($path);
-        while(false != ($item = $op->read())) {
-            if($item == '.' || $item == '..') {
-                continue;
-            }
-            if(is_dir($op->path.'/'.$item)) {
-                deleteAll($op->path.'/'.$item);
-                rmdir($op->path.'/'.$item);
-            } else {
-                unlink($op->path.'/'.$item);
-            }
-
-        }
     }
 }
