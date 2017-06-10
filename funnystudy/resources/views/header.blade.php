@@ -4,52 +4,116 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/header.css') }}">
-	<title>@yield('title')</title>
+    <title>@yield('title')</title>
+    <style>
+        html{
+            height: 100%;
+        }
+        body{
+            padding-top: 70px;
+            padding-bottom: 70px;
+            height: 100%;
+        }
+        #edit-brand{
+            color: #337ab7;
+            font-size: 40px;
+            font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+        }
+        #edit-brand:hover {
+            color: #c30d22;
+        }
+        .footer_bkgd{
+            background-color: #777777;
+            width: 100%;
+            padding: 20px;
+            height: 58px;
+            position:absolute;bottom:-70px;left:0px;
+            color: #ffffff;
+            font-family: "Helvetica Neue",Helvetica,Tahoma,Arial,sans-serif;
+            font-size: 13px;
+        }
+        .container{
+            position:relative;
+            width:100%;
+            min-height:100%;
+        }
+    </style>
     @yield('style')
 </head>
 <body>
-<!--导航栏开始-->
 @section('header')
-    <header class="qs-header">
-        <nav class="collapse navbar-collapse">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">趣学教育</a>
-                </div>
-                <ul class="nav navbar-nav navbar-letf">
-                    <li class=""><a href="#">首页</a></li>
-                    <li class=""><a href="#">最新资讯</a></li>
-                    <li class=""><a href="#">找老师</a></li>
-                    <li class=""><a href="#">看直播</a></li>
-                    <li class=""><a href="#">选课程</a></li>
+{{--顶部导航栏--}}
+<div class="container">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="col-md-1"></div>
+        <div class="navbar-header">
+            <a class="navbar-brand" id="edit-brand" href="#">趣学教育</a>
+        </div>
+
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="col-sm-1"></div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">首页 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">最新资讯</a></li>
+                <li><a href="#">找老师</a></li>
+                <li><a href="#">看直播</a></li>
+            </ul>
+
+            <div class="col-sm-1 navbar-right"></div>
+
+            @if(Session::has('username'))
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{Session::get('username')}}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人中心</a></li>
+                            <li><a href="#">我的收藏</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="course"><span class="glyphicon glyphicon-user"></span> {{Session::get('username')}}</a></li>
+                    <li><a href="exits"><span class="glyphicon glyphicon-log-in"></span> 注销</a></li>
                 </ul>
-                <form class="navbar-form pull-right visible-lg" action="http://www.qswangxiao.com/search" method="get">
-                    <div class="form-group">
-                        <input class="form-control" placeholder="请输入搜索的内容" >
-                        <button class="button glyphicon glyphicon-search"></button>
-                    </div>
-                </form>
-                @if(Session::has('username'))
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="course"><span class="glyphicon glyphicon-user"></span> {{Session::get('username')}}</a></li>
-                        <li><a href="exits"><span class="glyphicon glyphicon-log-in"></span> 注销</a></li>
-                    </ul>
-                @else
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="register"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-                        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
-                    </ul>
-                @endif
-            </div>
-        </nav>
-    </header>
+            @else
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="register"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                    <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                </ul>
+            @endif
+
+            <form class="navbar-form navbar-right" action="#">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="课程、名师">
+                </div>
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+            </form>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+{{--底部状态栏--}}
+<footer class="footer_bkgd">
+    <div class="address text-center">
+    <span>
+        地址: 河北师范大学软件学院
+    </span>&nbsp;&nbsp;
+        <span>
+        实训小组
+    </span>
+    </div>
+</footer>
 @show
-<!--导航栏结束-->
-    @yield('content')
+@yield('content')
+
+
+</div>
 </body>
 @yield('javascript')
 </html>
