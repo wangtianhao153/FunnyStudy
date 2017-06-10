@@ -11,11 +11,13 @@
 |
 */
 /*课程管理*/
-Route::get('teacher/index','CoursemanagerController@courselistdisplay');
+Route::get('teacher/index','CoursemanagerController@index');
+Route::get('teacher/list','CoursemanagerController@courselistdisplay');
 Route::get('teacher/info/{id}','CoursemanagerController@courseinfodisplay');
 Route::get('teacher/createcourse','CoursemanagerController@createCourse');
 Route::get('teacher/createchapter','CoursemanagerController@createChapter');
 Route::get('teacher/uploadvideo/{id}','CoursemanagerController@uploaddisplay');
+Route::get('teacher/pswd','CoursemanagerController@password');
 Route::post('teacher/listdelete/{id}','CoursemanagerController@listdelete');
 Route::post('teacher/createfirst','CoursemanagerController@createfirst');
 Route::any('teacher/createsecond','CoursemanagerController@createsecond');
@@ -25,6 +27,9 @@ Route::post('teacher/editCourseInfo','CoursemanagerController@editCourseInfo');
 Route::post('teacher/videoDelete/{id}','CoursemanagerController@videoDelete');
 Route::post('teacher/chapterDelete/{id}','CoursemanagerController@chapterDelete');
 Route::post('teacher/reorder','CoursemanagerController@reorder');
+Route::post('teacher/editHead','CoursemanagerController@editUserHead');
+Route::post('teacher/editUser','CoursemanagerController@editUserInfo');
+Route::post('teacher/editPassword','CoursemanagerController@editPassword');
 /*课程列表*/
 Route::get('course/list','CourseController@index');
 Route::get('course/play/{id}','CourseController@courseplay');

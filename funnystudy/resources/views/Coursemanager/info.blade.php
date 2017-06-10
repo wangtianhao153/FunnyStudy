@@ -56,16 +56,18 @@
 <!-- 左导航 -->
   <div class="left_nav">
     <ul class="nav nav-pills nav-stacked">
-      <li role="presentation" class="active"><a href="{{ url('teacher/index') }}">课程列表</a></li>
-      <li role="presentation"><a href="{{ url('teacher/createcourse') }}">创建课程</a></li>
+        <li role="presentation"><a href="{{ url('teacher/index') }}">基本资料</a></li>
+        <li role="presentation" class="active"><a href="{{ url('teacher/list') }}">课程列表</a></li>
+        <li role="presentation"><a href="{{ url('teacher/createcourse') }}">创建课程</a></li>
+        <li role="presentation"><a href="{{ url('teacher/pswd') }}">修改密码</a></li>
     </ul>
   </div>
 <!-- 右内容 -->
   <div class="right_content">
     <!-- 路径导航 -->
     <ol class="breadcrumb">
-      <li><a href="#">首页</a></li>
-      <li><a href="#">课程管理</a></li>
+      <li><a href="{{ url('index') }}">首页</a></li>
+      <li><a href="{{ url('teacher/list') }}">课程列表</a></li>
       <li class="active">课程详情</li>
     </ol>
     <!-- 课程详情 -->

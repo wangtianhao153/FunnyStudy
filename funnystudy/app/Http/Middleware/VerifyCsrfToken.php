@@ -22,5 +22,8 @@ class VerifyCsrfToken extends BaseVerifier
         'teacher/videoDelete/*',
         'teacher/chapterDelete/*',
         'teacher/reorder',
+        'teacher/editHead',
+        'teacher/editUser',
+        'teacher/editPassword'
     ];
 }

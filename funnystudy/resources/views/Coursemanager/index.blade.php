@@ -1,254 +1,167 @@
 @extends('header')
-@section('title', '教师课程管理')
+@section('title', '教师基本资料')
 @section('style')
-  <style type="text/css">
-    .left_nav{
-      width:15%;
-      margin-left: 8%;
-      margin-top:50px;
-      float: left;
-      position: fixed;
-    }
-    .right_content{
-      margin-top:10px;
-      float: right;
-      width: 67%;
-      margin-right: 8%;
-    }
-    a:hover{
-      text-decoration: none;
-    }
-    a:link{
-      text-decoration:none;
-    }
-    .butt{
-      width: 100%;
-      height: 35px;
-    }
-    .butt button{
-      width: 100%;
-    }
-    .none{
-      display:none;
-    }
-
-  </style>
+    <style type="text/css">
+        .left_nav{
+            width:15%;
+            margin-left: 8%;
+            margin-top:50px;
+            float: left;
+            position: fixed;
+        }
+        .right_content{
+            margin-top:10px;
+            float: right;
+            width: 67%;
+            margin-right: 8%;
+        }
+        a:hover{
+            text-decoration: none;
+        }
+        a:link{
+            text-decoration:none;
+        }
+        #Img img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
 @endsection
 @section('header')
-  @parent
+    @parent
 @endsection
 @section('content')
-<!-- 左导航 -->
-  <div class="left_nav">
-    <ul class="nav nav-pills nav-stacked">
-      <li role="presentation" class="active"><a href="{{ url('teacher/index') }}">课程列表</a></li>
-      <li role="presentation"><a href="{{ url('teacher/createcourse') }}">创建课程</a></li>
-    </ul>
-  </div>
-<!-- 右内容 -->
-  <div class="right_content">
-    <!-- 路径导航 -->
-    <ol class="breadcrumb">
-      <li><a href="{{ url('index') }}">首页</a></li>
-      <li class="active">课程管理</li>
-    </ol>
-    <!-- 课程列表 -->
-<div class="row">
-  @foreach ( $courses as $course)
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <a href="{{ url("teacher/info/$course->id") }}">
-        <img style="height: 200px;width: 330px;" src="{{ asset($course->URL) }}" alt="">
-        <div class="caption">
-          <h3>{{ $course->name }}</h3>
-          <p>{{ $course->brief }}</p>
-        </div>
-      </a>
-        <div class='butt'>
-          <input type="hidden" value="{{ $course->id }}">
-          <button type="button" class="btn btn-danger none">删除</button>
-        </div>
+    <!-- 左导航 -->
+    <div class="left_nav">
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" class="active"><a href="{{ url('teacher/index') }}">基本资料</a></li>
+            <li role="presentation"><a href="{{ url('teacher/list') }}">课程列表</a></li>
+            <li role="presentation"><a href="{{ url('teacher/createcourse') }}">创建课程</a></li>
+            <li role="presentation"><a href="{{ url('teacher/pswd') }}">修改密码</a></li>
+        </ul>
     </div>
-  </div>
-  @endforeach
-</div>
-  </div>
+    <!-- 右内容 -->
+    <div class="right_content">
+        <!-- 路径导航 -->
+        <ol class="breadcrumb">
+            <li><a href="{{ url('index') }}">首页</a></li>
+            <li class="active">基本资料</li>
+        </ol>
+
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">昵称</label>
+                <div class="col-sm-9">
+                    <input type="text" id="name" class="form-control edit" value="{{ $user->name }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">注册邮箱</label>
+                <div class="col-sm-9">
+                    <input type="email" id="username" class="form-control edit" value="{{ $user->username }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">个人头像</label>
+                <div class="col-sm-9">
+                    <!-- 个人头像 -->
+                    <div class="col-md-5" id="Img"><img src="{{ asset($user->picture) }}" class="img-thumbnail"></div>
+                    <!-- 图片上传 -->
+                    <div id="picker" style="display:none;"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">个人签名</label>
+                <div class="col-sm-9">
+                    <input type="text" id="sentence" class="form-control edit" value="{{ $user->sentence }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">个人介绍</label>
+                <div class="col-sm-9">
+                    <textarea rows="3" id="introduce" type="text" class="form-control edit">{{ $user->introduce }}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">年龄</label>
+                <div class="col-sm-9">
+                    <input type="text" id="age" class="form-control edit" onkeyup="value=value.replace(/[^\d]/g,'')" value="{{ $user->age }}">
+                </div>
+            </div>
+        </form>
+
+    </div>
 @endsection
 {{--底部--}}
 <div></div>
 @section('javascript')
-  <script type="text/javascript">
-      $('.row .thumbnail').hover(function(){
-        $(this).find('button').removeClass('none');
-      },function(){
-        $(this).find('button').addClass('none');
-      });
-// 弹出选择框函数
-(function ($) {
- window.Ewin = function () {
- var html = '<div id="[Id]" class="modal fade" role="dialog" aria-labelledby="modalLabel">' +
-    '<div class="modal-dialog modal-sm" style="margin-top: 250px;">' +
-     '<div class="modal-content">' +
-     '<div class="modal-header">' +
-      '<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>' +
-      '<h4 class="modal-title" id="modalLabel">[Title]</h4>' +
-     '</div>' +
-     '<div class="modal-body">' +
-     '<p>[Message]</p>' +
-     '</div>' +
-     '<div class="modal-footer">' +
- '<button type="button" class="btn btn-default cancel" data-dismiss="modal">[BtnCancel]</button>' +
- '<button type="button" class="btn btn-primary ok" data-dismiss="modal">[BtnOk]</button>' +
- '</div>' +
-     '</div>' +
-    '</div>' +
-    '</div>';
- 
- 
- var dialogdHtml = '<div id="[Id]" class="modal fade" role="dialog" aria-labelledby="modalLabel">' +
-    '<div class="modal-dialog">' +
-     '<div class="modal-content">' +
-     '<div class="modal-header">' +
-      '<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>' +
-      '<h4 class="modal-title" id="modalLabel">[Title]</h4>' +
-     '</div>' +
-     '<div class="modal-body">' +
-     '</div>' +
-     '</div>' +
-    '</div>' +
-    '</div>';
- var reg = new RegExp("\\[([^\\[\\]]*?)\\]", 'igm');
- var generateId = function () {
-  var date = new Date();
-  return 'mdl' + date.valueOf();
- }
- var init = function (options) {
-  options = $.extend({}, {
-  title: "操作提示",
-  message: "提示内容",
-  btnok: "确定",
-  btncl: "取消",
-  width: 200,
-  auto: false
-  }, options || {});
-  var modalId = generateId();
-  var content = html.replace(reg, function (node, key) {
-  return {
-   Id: modalId,
-   Title: options.title,
-   Message: options.message,
-   BtnOk: options.btnok,
-   BtnCancel: options.btncl
-  }[key];
-  });
-  $('body').append(content);
-  $('#' + modalId).modal({
-  width: options.width,
-  backdrop: 'static'
-  });
-  $('#' + modalId).on('hide.bs.modal', function (e) {
-  $('body').find('#' + modalId).remove();
-  });
-  return modalId;
- }
- 
- return {
-  alert: function (options) {
-  if (typeof options == 'string') {
-   options = {
-   message: options
-   };
-  }
-  var id = init(options);
-  var modal = $('#' + id);
-  modal.find('.ok').removeClass('btn-danger').addClass('btn-primary');
-  modal.find('.cancel').hide();
- 
-  return {
-   id: id,
-   on: function (callback) {
-   if (callback && callback instanceof Function) {
-    modal.find('.ok').click(function () { callback(true); });
-   }
-   },
-   hide: function (callback) {
-   if (callback && callback instanceof Function) {
-    modal.on('hide.bs.modal', function (e) {
-    callback(e);
-    });
-   }
-   }
-  };
-  },
-  confirm: function (options) {
-  var id = init(options);
-  var modal = $('#' + id);
-  modal.find('.ok').removeClass('btn-primary').addClass('btn-danger');
-  modal.find('.cancel').show();
-  return {
-   id: id,
-   on: function (callback) {
-   if (callback && callback instanceof Function) {
-    modal.find('.ok').click(function () { callback(true); });
-    modal.find('.cancel').click(function () { callback(false); });
-   }
-   },
-   hide: function (callback) {
-   if (callback && callback instanceof Function) {
-    modal.on('hide.bs.modal', function (e) {
-    callback(e);
-    });
-   }
-   }
-  };
-  },
-  dialog: function (options) {
-  options = $.extend({}, {
-   title: 'title',
-   url: '',
-   width: 800,
-   height: 550,
-   onReady: function () { },
-   onShown: function (e) { }
-  }, options || {});
-  var modalId = generateId();
- 
-  var content = dialogdHtml.replace(reg, function (node, key) {
-   return {
-   Id: modalId,
-   Title: options.title
-   }[key];
-  });
-  $('body').append(content);
-  var target = $('#' + modalId);
-  target.find('.modal-body').load(options.url);
-  if (options.onReady())
-   options.onReady.call(target);
-  target.modal();
-  target.on('shown.bs.modal', function (e) {
-   if (options.onReady(e))
-   options.onReady.call(target, e);
-  });
-  target.on('hide.bs.modal', function (e) {
-   $('body').find(target).remove();
-  });
-  }
- }
- }();
-})(jQuery);
+<script src="https://cdn.bootcss.com/webuploader/0.1.1/webuploader.js"></script>
+<script type="text/javascript">
 
-      $('.btn-danger').unbind('click').click(function(){
-        var div=$(this).parent().parent().parent();
-        var id = $(this).parent().children('input').val();
-        Ewin.confirm({ message: "确认要删除选择的课程吗？",btnok: "删除" }).on(function (e) {
-          if (!e) {
+$('.edit').unbind('click').on('change',function () {
+    var field = $(this).attr('id');
+    var val = $(this).val();
+    $.post('{{ url('teacher/editUser') }}',{field:field,val:val});
+});
+
+
+//图片上传
+$('#Img').hover(function(){
+    $(this).append('<div id="editImg" style="background:#000;width: 200px;height:200px;position: absolute;top:0px;color:#FFFAFA;line-height: 200px;text-align: center;filter:alpha(Opacity=50);-moz-opacity:0.5;opacity: 0.5">点击更换头像</div>');
+    $('#editImg').unbind('click').click(function(){
+        $('#picker').find('input').unbind('click').click();
+    });
+},function(){
+    $('#editImg').remove();
+});
+var $list = $('#Img');
+var uploader = WebUploader.create({
+
+    // swf文件路径
+    swf: 'https://cdn.bootcss.com/webuploader/0.1.1/Uploader.swf',
+
+    // 文件接收服务端。
+    server: '{{ url('teacher/editHead') }}',
+
+    // 选择文件的按钮。可选。
+    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+    pick: {id : '#picker',multiple : false},
+
+    // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+    resize: false,
+    produces:"charset=UTF-8",
+    accept: {
+        title: 'Images',
+        extensions: 'gif,jpg,jpeg,bmp,png',
+        mimeTypes: 'image/*'
+    },
+});
+uploader.on( 'fileQueued', function( file ) {
+    var $li = $(
+                    '<div id="' + file.id + '" class="file-item thumbnail" style="width: 200px;height: 200px;margin-bottom: 0px;">' +
+                    '<img style="height: 190px;">' +
+                    '</div>'
+            ),
+            $img = $li.find('img');
+
+
+    // $list为容器jQuery实例
+    $list.html( $li );
+    $list.removeClass('Spicture');
+
+    // 创建缩略图
+    // 如果为非图片文件，可以不用调用此方法。
+    // thumbnailWidth x thumbnailHeight 为 100 x 100
+    uploader.makeThumb( file, function( error, src ) {
+        if ( error ) {
+            $img.replaceWith('<span>不能预览</span>');
             return;
-          }
-//          post访问无返回值
-          $.post('{{ url('teacher/listdelete') }}'+'/'+id);
-          div.remove();
-          window.location.reload();
-        });
-      });
-  </script>
+        }
+
+        $img.attr( 'src', src );
+    }, 200, 200 );
+    var courseID=$('#courseID').val();
+    uploader.upload();
+});
+</script>
 @endsection

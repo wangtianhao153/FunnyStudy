@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\File;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 
@@ -19,18 +20,32 @@ class CoursemanagerController extends Controller
 
 //页面显示
     /**
+     * 显示个人中心
+     */
+    public function index()
+    {
+//        获取用户ID
+        $ID = session()->get('id');
+        $data = DB::table('users')->select('name','username','introduce','sentence','picture')->where('id',$ID)->get();
+        return view('Coursemanager.index')->with('user',$data[0]);
+    }
+    public function password()
+    {
+        return view('Coursemanager.editpswd');
+    }
+    /**
      * @return $this 显示教师课程管理首页
      */
     public function courselistdisplay()
     {
 //        获取登录用户的ID
-        $userID = 1;
+        $userID = session('id');
 //        从数据库获取视图所需数据
 //        根据$userID查询课程表course,查询字段id,name,URL,cost
         $courses = DB::table('course')->select('id','name','URL','brief')->where('delete_at',0)->where('teacherID',$userID)->get();
 //        将数据传入视图
 //        显示视图
-        return view('Coursemanager/index')->with('courses',$courses);
+        return view('Coursemanager/list')->with('courses',$courses);
     }
 
     /**
@@ -107,7 +122,7 @@ class CoursemanagerController extends Controller
     public function createfirst(Request $request)
     {
 //        获取用户ID
-        $userID = 1;
+        $userID = session('id');
 
         $gradeID = $request->get('gradeID');
         $name = $request->get('courseName');
@@ -176,7 +191,6 @@ class CoursemanagerController extends Controller
     {
 //        获取课程ID
         $courseID = $request->get('courseID');
-        dump($courseID);
 //        上传图片
         $URL = $request->file('file')->store('public/thumb');
         $URL = Storage::url($URL);
@@ -271,5 +285,45 @@ class CoursemanagerController extends Controller
         $secondOrder = $second[0]->order;
         DB::table($table)->where('id',$firstID)->update(['order'=>$secondOrder]);
         DB::table($table)->where('id',$secondID)->update(['order'=>$firstOrder]);
+    }
+    public function editUserHead(Request $request)
+    {
+//        获取用户ID
+        $ID = session('id');
+//        上传图片
+        $URL = $request->file('file')->store('public/image');
+        $URL = Storage::url($URL);
+//        获取原图片路径
+        $oldPath = DB::table('users')->select('picture')->where('id',$ID)->get();
+//        删除原图片
+        if (($oldPath=$oldPath[0]->picture) != 'image/althead.jpg')
+        {
+            $oldPath = str_replace('/storage','public',$oldPath);
+            Storage::delete($oldPath);
+        }
+//        更改数据库图片路径
+        DB::table('users')->where('id',$ID)->update([
+            'picture'   =>  $URL,
+        ]);
+    }
+    public function editUserInfo(Request $request)
+    {
+        $ID = session('id');
+        $field = $request->get('field');
+        $val = $request->get('val');
+        DB::table('users')->where('id',$ID)->update([$field=>$val]);
+    }
+    public function editPassword(Request $request)
+    {
+        $ID = session('id');
+        $oldPassword = md5($request->get('oldpswd'));
+        $newPassword = md5($request->get('newpswd'));
+        $Password = DB::table('users')->where('id',$ID)->value('password');
+        if ($oldPassword == $Password) {
+            DB::table('users')->where('id', $ID)->update(['password' => $newPassword]);
+            return 1;
+        }else{
+            return 0;
+        }
     }
 }
