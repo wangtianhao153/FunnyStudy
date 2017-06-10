@@ -68,18 +68,11 @@
 
             @if(Session::has('username'))
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{Session::get('username')}}<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">个人中心</a></li>
-                            <li><a href="#">我的收藏</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="course"><span class="glyphicon glyphicon-user"></span> {{Session::get('username')}}</a></li>
+                    @if(Session::get('userRole') == 1)
+                        <li><a href="course"><span class="glyphicon glyphicon-user"></span> {{Session::get('username')}}</a></li>
+                    @else
+                        <li><a href="course"><span class="glyphicon glyphicon-user"></span> {{Session::get('username')}}</a></li>
+                    @endif
                     <li><a href="exits"><span class="glyphicon glyphicon-log-in"></span> 注销</a></li>
                 </ul>
             @else
