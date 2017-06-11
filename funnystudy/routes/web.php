@@ -47,3 +47,11 @@ Route::post('/sbt','RegisterController@register');
 /*教师列表*/
 Route::get('teacherdisplay/listdisplay','TeacherDisplayController@listDisplay');
 Route::get('teacherdisplay/information/{id}','TeacherDisplayController@information');
+//个人中心
+Route::get('student','StudentController@index');
+Route::get('collection','CollectionController@index');
+Route::get('reply','ReplyController@index');
+Route::get('introduction','IntroductionController@index');
+Route::any('updata','IntroductionController@updata');
+
+

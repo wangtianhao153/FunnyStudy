@@ -37,6 +37,9 @@
                 <input type="password" name="password" placeholder="密码" id="pass">
                 <li>确认密码</li>
                 <input type="password" name="psw" placeholder="确认密码" id="pswd">
+                <li>注册身份</li>
+                <input type="radio" name="role" value="1"  style="font-size: 20px;" checked="" />学生
+                <input type="radio" name="role" value="0" style="margin-left: 10px"/>教师
             </ul>
         </div>
         <div class="form-forget">

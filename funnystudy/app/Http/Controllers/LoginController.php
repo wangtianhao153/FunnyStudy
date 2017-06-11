@@ -27,8 +27,14 @@ class LoginController extends Controller
                 $id = DB::table('users')->where('username',$username)->value('id');
                 $request->session()->put('username',$name);
                 $request->session()->put('id',$id);
-//                dd(session('username'));
-                return view('index/index');
+                $role = DB::table('users')->where('username',$username)->value('role');
+                $request->session()->put('role',$role);
+                if($role == 1){
+                    return view('index/index');
+                }else{
+                    return view('person/teacher');
+                }
+
             }else{
 //                $this->ajaxReturn($arr,json);
                 return redirect('login')->with('message', '用户名或密码错误');
@@ -42,6 +48,7 @@ class LoginController extends Controller
     public function exits(Request $request){
         $request->session()->put('username',NULL);
         $request->session()->put('id',NULL);
+        $request->session()->put('role',NULL);
         return view('index/index');
     }
 }
