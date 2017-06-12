@@ -73,7 +73,12 @@ class CourseController extends Controller
     }
     //视频播放页
     public function courseplay($id){
-        $courseinfo = DB::table('course')->select('name')->where('delete_at',0)->where('id',$id)->get();
+        $courseinfo = DB::table('course')
+            ->join('users','course.teacherID','=','users.id')
+            ->select('course.name','course.brief','users.name as teacherName','users.introduce as teacherIntroduce','users.picture')
+            ->where('course.delete_at',0)
+            ->where('course.id',$id)
+            ->get();
         $chapterinfo = DB::table('chapter')->select('id','name')->where('courseID',$id)->orderBy('order', 'asc')->get();
         $videoinfo = DB::table('video')
             ->join('chapter','video.chapterID','=','chapter.id')
@@ -81,7 +86,12 @@ class CourseController extends Controller
             ->where('chapter.courseID',$id)
             ->orderBy('video.order', 'asc')
             ->get();
-        return view('Course.play')->with('courseName',$courseinfo[0]->name)->with('chapters',$chapterinfo)->with('videos',$videoinfo);
+        $students = DB::table('course_students')
+            ->join('users','course_students.studentID','=','users.id')
+            ->select('users.name','users.picture')
+            ->where('course_students.courseID',$id)
+            ->get();
+        return view('Course.play')->with('course',$courseinfo[0])->with('chapters',$chapterinfo)->with('videos',$videoinfo)->with('students',$students);
     }
     public function videoPlay($id){
         $result = DB::table('video')->where('id',$id)->select('URL')->get();

@@ -231,7 +231,7 @@ function operate(){
   var id=$(this).find('.id').val();
   if(thisclass == 'col-md-12 bkgc'){
     $('#list').find('.operate').html('');
-    $(this).find('.operate').append('<button type="button" class="btn btn-info"><span class="glyphicon glyphicon-arrow-up"></span></button><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-arrow-down"></span></button><a class="btn btn-info" href="{{ url('course/play') }}'+'/'+id+'">详情</a><button type="button" class="btn btn-danger">删除</button>');
+    $(this).find('.operate').append('<button type="button" class="btn btn-info"><span class="glyphicon glyphicon-arrow-up"></span></button><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-arrow-down"></span></button><a class="btn btn-info" href="{{ url('videoPlay') }}'+'/'+id+'">详情</a><button type="button" class="btn btn-danger">删除</button>');
     $('.btn-danger').click(function(){
       Ewin.confirm({ message: "确认要删除这一个视频吗？",btnok: "删除" }).on(function (e) {
           if (!e) {
