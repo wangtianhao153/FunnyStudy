@@ -71,11 +71,6 @@ class CourseController extends Controller
             ->with("grade",$grade)
             ->with('page',$page);
     }
-    //课程详情页
-    public function coursedetails(Request $request){
-        $id = $request->route('id');
-
-    }
     //视频播放页
     public function courseplay($id){
         $courseinfo = DB::table('course')->select('name')->where('delete_at',0)->where('id',$id)->get();
