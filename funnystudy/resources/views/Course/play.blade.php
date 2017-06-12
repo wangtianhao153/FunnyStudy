@@ -5,6 +5,7 @@
         #video{
             float: left;
             width: 740px;
+            height: 470px;
             margin-left: 13%;
             margin-top: 30px;
         }
@@ -34,6 +35,22 @@
         .videoHover{
             color: #666666;
         }
+        .panel img{
+            width: 30px;
+            height: 30px;
+            border-radius: 22px;
+        }
+        .student{
+            width: 100%;
+            color: #337ab7;
+        }
+        .brief{
+            font-size: 22px;
+        }
+        .brief p{
+            font-size: 18px;
+            padding-left: 2em;
+        }
     </style>
 @endsection
 @section('content')
@@ -41,7 +58,7 @@
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="{{ url('index') }}">首页</a></li>
-            <li class="active">{{ $courseName }}</li>
+            <li class="active">{{ $course->name }}</li>
             <li class="active" id="videoName">视频名</li>
         </ol>
     </div>
@@ -52,7 +69,7 @@
         </div>
     </div>
     <div class="list">
-        <h1>{{ $courseName }}</h1>
+        <h1>{{ $course->name }}</h1>
         @foreach($chapters as $chapter)
         <div class="chapter">
             <h3>{{ $chapter->name }}</h3>
@@ -64,9 +81,58 @@
         </div>
             @endforeach
     </div>
+
+    <div class="col-sm-offset-2 col-md-6" style="margin-right: 20px;">
+        <div class="brief">
+            课程介绍
+            <p>{{ $course->brief }}</p>
+        </div>
+    </div>
+
+
+    <div class="col-lg-3 col-md-4" style="width: 285px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    授课教师
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="media media-default">
+                    <div class="media-left">
+                        <a class=" js-user-card" href="">
+                            <img style="width: 30px;height: 30px;border-radius: 22px;" class="avatar-md" src="{{ asset($course->picture) }}">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <div class="title">
+                            <a class="link-dark link-light" href="">{{ $course->teacherName }}</a>
+                        </div>
+                        <div class="content">{{ $course->teacherIntroduce }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    最新学员
+                </h3>
+            </div>
+            <div class="panel-body">
+                @foreach($students as $student)
+                <div class="student">
+                    <img class="avatar-sm" src="{{ asset($student->picture) }}">
+                    {{ $student->name }}
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 @endsection
 @section('javascript')
-
 <script type="text/javascript">
 $(document).ready(function () {
 

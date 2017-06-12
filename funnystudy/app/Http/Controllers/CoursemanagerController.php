@@ -15,7 +15,9 @@ class CoursemanagerController extends Controller
 //    进行所有操作之前的    登录验证
     public function __construct()
     {
-        //
+        if (!session('username')||!session('id')){
+            return redirect("index");
+        }
     }
 
 //页面显示
@@ -26,7 +28,7 @@ class CoursemanagerController extends Controller
     {
 //        获取用户ID
         $ID = session()->get('id');
-        $data = DB::table('users')->select('name','username','introduce','sentence','picture')->where('id',$ID)->get();
+        $data = DB::table('users')->select('name','username','introduce','sentence','picture','age')->where('id',$ID)->get();
         return view('Coursemanager.index')->with('user',$data[0]);
     }
     public function password()
@@ -195,9 +197,9 @@ class CoursemanagerController extends Controller
         $URL = $request->file('file')->store('public/thumb');
         $URL = Storage::url($URL);
 //        获取原图片路径
-        $oldPath = DB::table('course')->select('URL')->where('id',$courseID)->get();
+        $oldPath = DB::table('course')->where('id',$courseID)->value('URL');
 //        删除原图片
-        Storage::delete($oldPath[0]->URL);
+        Storage::delete($oldPath);
 //        更改数据库图片路径
         DB::table('course')->where('id',$courseID)->update([
             'URL'   =>  $URL,

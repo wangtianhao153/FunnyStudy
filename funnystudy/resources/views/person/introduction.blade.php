@@ -29,10 +29,10 @@
             </div>
             <div class="left-content">
                 <ul class="nav nav-pills nav-stacked">
-                    <li ><a href="student">我的课程</a></li>
-                    <li><a href="collection">我的收藏</a></li>
-                    <li><a href="reply">我的评论</a></li>
-                    <li class="active"><a href="introduction">个人信息</a></li>
+                    <li ><a href="{{ url('student')}}">我的课程</a></li>
+                    <li><a href="{{ url('collection')}}">我的收藏</a></li>
+                    <li><a href="{{ url('reply')}}">我的评论</a></li>
+                    <li class="active"><a href="{{ url('introduction')}}">个人信息</a></li>
                 </ul>
             </div>
         </div>

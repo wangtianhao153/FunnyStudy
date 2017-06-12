@@ -35,7 +35,7 @@
             font-family: "Helvetica Neue",Helvetica,Tahoma,Arial,sans-serif;
             font-size: 13px;
         }
-        .container{
+        .header-edit-container{
             position:relative;
             width:100%;
             min-height:100%;
@@ -46,7 +46,7 @@
 <body>
 @section('header')
 {{--顶部导航栏--}}
-<div class="container">
+<div class="container header-edit-container">
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="col-md-1"></div>
@@ -69,16 +69,16 @@
             @if(Session::has('username'))
                 <ul class="nav navbar-nav navbar-right">
                     @if(Session::get('userRole') == 1)
-                        <li><a href="course"><span class="glyphicon glyphicon-user"></span> {{Session::get('username')}}</a></li>
+                        <li><a href="{{ url('course') }}"><span class="glyphicon glyphicon-user"></span> {{Session::get('username')}}</a></li>
                     @else
-                        <li><a href="course"><span class="glyphicon glyphicon-user"></span> {{Session::get('username')}}</a></li>
+                        <li><a href="{{ url('course') }}"><span class="glyphicon glyphicon-user"></span> {{Session::get('username')}}</a></li>
                     @endif
-                    <li><a href="exits"><span class="glyphicon glyphicon-log-in"></span> 注销</a></li>
+                    <li><a href="{{ url('exits') }}"><span class="glyphicon glyphicon-log-in"></span> 注销</a></li>
                 </ul>
             @else
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="register"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-                    <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                    <li><a href="{{ url('register') }}"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                    <li><a href="{{ url('login') }}"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
                 </ul>
             @endif
 

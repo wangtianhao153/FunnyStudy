@@ -11,8 +11,11 @@ class StudentController extends Controller
 {
     public function index(Request $request)
     {
-//        $id = $request->session()->get('id');
-        $id = 1;
+        $id = $request->session()->get('id');
+        if($id == null){
+            return view('login/login');
+        }
+//        $id = 1;
         $course = DB::table('course_students')->join('course','course.id','=','course_students.courseID')->where('studentID',$id)->paginate(9);
 //        dd($course);
         return view('person/course')->with('data',$course);
