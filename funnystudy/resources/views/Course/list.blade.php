@@ -46,7 +46,7 @@
 </head>
 <nav class="navbar navbar-default navbar-fixed-top">
 <!--页面主体开始-->
-		@section('content')
+@section('content')
 <div class="container">
 		<!--面包屑开始-->
 		<ol class="breadcrumb">
