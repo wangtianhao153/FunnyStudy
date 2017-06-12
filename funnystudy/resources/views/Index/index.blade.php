@@ -90,17 +90,17 @@
 
             <div class="item active">
                 <a href="">
-                    <img  src="{{$news[0]->picture}}" alt="First slide">
+                    <img  src="{{$news[0]->picture}}" alt="First slide"style="height: 250px;width: 350px;">
                 </a>
             </div>
             <div class="item">
                 <a href="">
-                    <img  src="{{$news[1]->picture}}" alt="Second slide">
+                    <img  src="{{$news[1]->picture}}" alt="Second slide"style="height: 250px;width: 350px;">
                 </a>
             </div>
             <div class="item">
                 <a href="">
-                    <img  src="{{$news[2]->picture}}" alt="Third slide">
+                    <img  src="{{$news[2]->picture}}" alt="Third slide"style="height: 250px;width: 350px;">
                 </a>
             </div>
         </div>
@@ -198,7 +198,7 @@
                         </div>
                         <div class="teacher-name">{{$user->name}}</div>
                         <div class="teacher-bottom">
-                            <div class="teacher-about" style="word-wrap:break-word;">
+                            <div class="teacher-about" style="word-wrap:break-word;  height: 34px;width: 215px;">
                                {{$user->introduce}}
                             </div>
                         </div>
@@ -208,7 +208,7 @@
             </div>
         </div>
         <div class="section-more">
-            <a class="btn btn-ghost-default" href="#">更多名师</a>
+            <a class="btn btn-ghost-default" href="">更多名师</a>
         </div>
     </div>
 </section>

@@ -17,7 +17,7 @@ class TeacherDisplayController extends Controller
     }
     public function information($id)
     {   //老师信息
-        $info=DB::table('users')->select('name','introduce','picture','sentence')->where('id',$id)->get();
+        $info=DB::table('users')->select('name','introduce','picture','sentence','id')->where('id',$id)->get();
         //老师粉丝数量
         $students=DB::table('student_teachers')->where('teacherID',$id)->count();
         //老师课程数
@@ -35,6 +35,51 @@ class TeacherDisplayController extends Controller
            ->with('course',$course)
            ->with('coursecount',$coursecount)
            ->with('fanss',$fanss);
+
+    }
+
+    public function teacherLogin(Request $request){
+        $username = $request->get('email');
+        $password = $request->get('password');
+        $password = md5($password);
+        $psd = DB::table('users')->select('password')->where('username',$username)->get();
+        if($psd[0] != $password){
+            $name = DB::table('users')->where('username',$username)->value('name');
+            $id = DB::table('users')->where('username',$username)->value('id');
+            $request->session()->put('username',$name);
+            $request->session()->put('id',$id);
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+
+    }
+
+    public function studentsteachers(Request $request){
+        $studentID = Session('id');
+        $teacherID=$request->get('name');
+        $teacherID=(int)$teacherID;
+        $resu=DB::table('student_teachers')->where('studentID',$studentID)->where('teacherID',$teacherID)->get();
+        if(!$resu){
+            $results=DB::table('student_teachers')->insert(
+                ['studentID' => $studentID, 'teacherID' =>$teacherID]
+            );
+
+        }
+
+    }
+
+
+    public function teachersstudents(Request $request){
+        $studentID = Session('id');
+        $teacherID=$request->get('name');
+        $teacherID=(int)$teacherID;
+        $results=DB::table('student_teachers')->where('studentID',$studentID)->where('teacherID',$teacherID)->delete();
+        if($results){
+            return 5;
+        }
 
     }
 }

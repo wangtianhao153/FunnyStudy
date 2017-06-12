@@ -24,6 +24,7 @@ class VerifyCsrfToken extends BaseVerifier
         'teacher/reorder',
         'teacher/editHead',
         'teacher/editUser',
-        'teacher/editPassword'
+        'teacher/editPassword',
+        'teacherdisplay/teacherLogin',
     ];
 }

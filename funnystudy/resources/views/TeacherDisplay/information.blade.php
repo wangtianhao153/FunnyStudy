@@ -6,6 +6,7 @@
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{asset('/js/jquery.pwstabs.js')}}"></script>
+    <script src="{{asset('/js/modal.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/header.css') }}">
     <title>教师详情页</title>
     <style type="text/css">
@@ -13,9 +14,7 @@
         .navbar-header .navbar-brand a:link{
             color: #337ab7;
         }
-        a:link{
-            color: #ffffff;
-        }
+
         a:link{
             text-decoration:none;   /* 指正常的未被访问过的链接*/
         }
@@ -185,7 +184,7 @@
         }
 
         .course-info .title {
-            height: 30px;
+            height: 38px;
             padding-top: 5px;
 
         }
@@ -265,8 +264,16 @@
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                <li>
+                    <a href="#" value="1">
+                        <span class="glyphicon glyphicon-user"></span> 注册
+                    </a>
+                </li>
+                <li>
+                    <a href="#" value="1">
+                        <span class="glyphicon glyphicon-log-in"></span>登录
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -286,12 +293,13 @@
                 <span class="mrm">{{$students}}</span>粉丝
             </div>
             <div class="actions">
-                <a class="btn btn-primary follow-btn mrl" href="javascript:;" data-url="/user/2303/follow"style="">关注</a>
-                <a class="btn btn-default unfollow-btn mrl" href="javascript:;" data-url="/user/2303/unfollow" style="display: none;">已关注</a>
+                <input id="teacherid" type="hidden" value="{{$info->id}}">
+                <a class="btn btn-primary follow-btn mrl" href="javascript:;" data-url="/user/2303/follow"style=""value="">关注</a>
+                <a class="btn btn-default unfollow-btn mrl" href="javascript:;" data-url="/user/2303/unfollow" style="display: none;"value="">已关注</a>
             </div>
         </div>
         <div class="user-about hidden-sm hidden-xs">
-            <div class="user-about-content">
+            <div class="user-about-content" style="word-wrap:break-word;">
                 {{$info->introduce}}
             </div>
         </div>
@@ -306,7 +314,7 @@
         <div class="course-detail-main-div">
             <div data-pws-tab="course-details" data-pws-tab-name="个人介绍">
                 <div class="course-details-main">
-                    <div class="course-detail-content" data-widget-cid="widget-0">
+                    <div class="course-detail-content" style="word-wrap:break-word;">
                         {{$info->sentence}}
                     </div>
                 </div>
@@ -363,7 +371,7 @@
                     @else
                         <div>
                             <div class="row">
-                                <div class="empty">还有粉丝哟</div>
+                                <div class="empty">还没有粉丝哟</div>
                             </div>
                         </div>
                     @endif
@@ -373,28 +381,74 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">登录</h4>
+            </div>
+            <span class="error"style="display: none"></span>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="txt_departmentname">账号</label>
+                    <input type="text" name="username" class="form-control" id="txt_departmentname" placeholder="请输入账号">
+                </div>
+                <div class="form-group">
+                    <label for="txt_parentdepartment">密码</label>
+                    <input type="password" name="password" class="form-control" id="txt_parentdepartment" placeholder="请输入密码">
+                </div>
+                <div class="modal-footer"style="text-align: center">
+                    <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal">登录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 <script type="text/javascript">
     jQuery(function($){"display","none"
         $('.course-detail-main-div').pwstabs({
             effect: 'scale',
-
             defaultTab: 1,
-
         });
     });
-    $('.actions .btn-primary').unbind('click').on('click',function () {
-        $(this).next().show();
-        $(this).hide();
-        $.post('',{id:id},function (date) {
-            if(date == 1){
 
-            }
-        });
+    $('.actions .btn-primary').unbind('click').on('click',function () {
+        @if(Session::has('username'))
+            $(this).next().show();
+            $(this).hide();
+            var name=$('#teacherid').val();
+            $.post('{{url('teacherdisplay/studentsteachers')}}',{name:name},function () {
+
+            });
+        @else
+            $('#myModal').modal();
+            $('#btn_submit').unbind('click').on('click',function () {
+                var username=$("input[name='username']").val();
+                var password=$("input[name='password']").val();
+                var name=$('#teacherid').val();
+                $.post('{{url('teacherdisplay/teacherLogin')}}',{email:username,password:password,name:name},function (data) {
+                    if(data==0){
+                        $('.error').style('display',block).text("用户名或密码错误").css('color','red');
+                    }else if (data==1){
+                        alert('1');
+                        window.history.go(0);
+                    }
+                });
+
+            })
+        @endif
+
     });
     $('.actions .btn-default').unbind('click').click(function () {
         $(this).hide();
         $(this).prev().show();
+        var name=$('#teacherid').val();
+        $.post('{{url('teacherdisplay/teachersstudents')}}',{name:name},function () {
+        });
 
     });
 </script>
