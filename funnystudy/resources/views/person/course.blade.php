@@ -28,10 +28,10 @@
         </div>
         <div class="left-content">
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="student">我的课程</a></li>
-                <li><a href="collection">我的收藏</a></li>
-                <li><a href="reply">我的评论</a></li>
-                <li><a href="introduction">个人信息</a></li>
+                <li class="active"><a href="{{ url('student')}}">我的课程</a></li>
+                <li><a href="{{ url('collection')}}">我的收藏</a></li>
+                <li><a href="{{ url('reply')}}">我的评论</a></li>
+                <li><a href="{{ url('introduction')}}">个人信息</a></li>
             </ul>
         </div>
     </div>
@@ -49,10 +49,10 @@
                         @foreach($data as $value)
                     <div class="video">
                         <div class="picture">
-                            <a href="#"><img src="{{$value->URL}}"> </a>
+                            <a href="{{ url('course/play/'.$value->id) }}"><img src="{{$value->URL}}"> </a>
                         </div>
                         <div class="introduce">
-                            <p align="center"><a href="#" style="color: #000000">{{$value->name}}</a></p>
+                            <p align="center"><a href="{{ url('course/play/'.$value->id) }}" style="color: #000000">{{$value->name}}</a></p>
                         </div>
                     </div>
                     @endforeach

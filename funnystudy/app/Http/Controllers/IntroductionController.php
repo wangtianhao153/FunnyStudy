@@ -14,6 +14,9 @@ class IntroductionController extends Controller
     public function index(Request $request)
     {
         $id = $request->session()->get('id');
+        if($id == null){
+            return view('login/login');
+        }
 //        $id = 1;
         $name = DB::table('users')->where('id', $id)->value('name');
         $age = DB::table('users')->where('id', $id)->value('age');
