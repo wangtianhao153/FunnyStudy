@@ -51,17 +51,17 @@
     <div class="container-fluid">
         <div class="col-md-1"></div>
         <div class="navbar-header">
-            <a class="navbar-brand" id="edit-brand" href="#">趣学教育</a>
+            <a class="navbar-brand" id="edit-brand" href="{{Url('index/')}}">趣学教育</a>
         </div>
 
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div class="col-sm-1"></div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">首页 <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="{{Url('index/')}}">首页 <span class="sr-only">(current)</span></a></li>
                 <li><a href="#">最新资讯</a></li>
-                <li><a href="#">找老师</a></li>
-                <li><a href="#">看直播</a></li>
+                <li><a href="{{Url('teacherdisplay/listdisplay')}}">找老师</a></li>
+                <li><a href="{{Url('course/list')}}">课程列表</a></li>
             </ul>
 
             <div class="col-sm-1 navbar-right"></div>
