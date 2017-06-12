@@ -10,10 +10,13 @@ class ReplyController extends Controller
 {
     public function index(Request $request)
     {
-//        $id = $request->session()->get('id');
-        $id = 1;
+        $id = $request->session()->get('id');
+        if($id == null){
+            return view('login/login');
+        }
+//        $id = 1;
         $data = DB::table('comment')->join('video','video.id','=','comment.videoID')->where('userID',$id)->paginate(10);
-//        dd($data);
+//        dd($data);/
         return view('person/reply')->with('data',$data);
     }
 }
