@@ -35,7 +35,7 @@
             font-family: "Helvetica Neue",Helvetica,Tahoma,Arial,sans-serif;
             font-size: 13px;
         }
-        .container{
+        .header-edit-container{
             position:relative;
             width:100%;
             min-height:100%;
@@ -46,7 +46,7 @@
 <body>
 @section('header')
 {{--顶部导航栏--}}
-<div class="container">
+<div class="container header-edit-container">
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="col-md-1"></div>
