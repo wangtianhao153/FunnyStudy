@@ -26,5 +26,7 @@ class VerifyCsrfToken extends BaseVerifier
         'teacher/editUser',
         'teacher/editPassword',
         'teacherdisplay/teacherLogin',
+        'teacherdisplay/studentsteachers',
+        'teacherdisplay/teachersstudents'
     ];
 }

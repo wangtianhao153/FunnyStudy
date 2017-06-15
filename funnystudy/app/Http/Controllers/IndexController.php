@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class IndexController extends Controller
 {
     Public function index(){
-        $news=DB::table('news')->select('title','picture','time')->limit(6)->get();
+        $news=DB::table('news')->select('id','title','picture','time')->limit(6)->get();
         $course=DB::table('course')->limit(12)->get();
         $users=DB::table('users')->where('role',1)->limit(4)->get();
         return view('Index/index')

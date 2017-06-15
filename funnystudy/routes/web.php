@@ -58,5 +58,7 @@ Route::post('teacherdisplay/studentsteachers','TeacherDisplayController@students
 Route::post('teacherdisplay/teachersstudents','TeacherDisplayController@teachersstudents');
 //首页
 Route::get('/index','IndexController@index');
-
+//资讯页
+Route::get('/news/index','NewsController@index');
+Route::get('/news/newscontent/{id}','NewsController@newscontent');
 

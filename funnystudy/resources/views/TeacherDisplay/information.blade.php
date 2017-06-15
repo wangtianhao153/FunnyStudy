@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+@extends('header')
+@section('title','教师详情页')
+@section('style')
     <link rel="stylesheet" type="text/css" href="{{asset('/css/jquery.pwstabs.min.css')}}">
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="{{asset('/js/jquery.pwstabs.js')}}"></script>
-    <script src="{{asset('/js/modal.js')}}"></script>
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/header.css') }}">
-    <title>教师详情页</title>
+
     <style type="text/css">
 
         .navbar-header .navbar-brand a:link{
@@ -240,45 +234,9 @@
         }
 
     </style>
-
-</head>
+@endsection
 <body>
-<!--导航栏-->
-<header class="qs-header">
-    <nav class="collapse navbar-collapse">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">趣学教育</a>
-            </div>
-            <ul class="nav navbar-nav navbar-letf">
-                <li class=""><a href="#">首页</a></li>
-                <li class=""><a href="#">最新资讯</a></li>
-                <li class=""><a href="#">找老师</a></li>
-                <li class=""><a href="#">看直播</a></li>
-                <li class=""><a href="#">选课程</a></li>
-            </ul>
-            <form class="navbar-form pull-right visible-lg" action="http://www.qswangxiao.com/search" method="get">
-                <div class="form-group">
-                    <input class="form-control" placeholder="请输入搜索的内容" >
-                    <button class="button glyphicon glyphicon-search"></button>
-                </div>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#" value="1">
-                        <span class="glyphicon glyphicon-user"></span> 注册
-                    </a>
-                </li>
-                <li>
-                    <a href="#" value="1">
-                        <span class="glyphicon glyphicon-log-in"></span>登录
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
-
+@section('content')
 <div class="user-center-header has-blurr" >
 
     <div class="container clearfix" >
@@ -294,8 +252,13 @@
             </div>
             <div class="actions">
                 <input id="teacherid" type="hidden" value="{{$info->id}}">
+                @if($focus == 0)
                 <a class="btn btn-primary follow-btn mrl" href="javascript:;" data-url="/user/2303/follow"style=""value="">关注</a>
                 <a class="btn btn-default unfollow-btn mrl" href="javascript:;" data-url="/user/2303/unfollow" style="display: none;"value="">已关注</a>
+                @else
+                <a class="btn btn-primary follow-btn mrl" href="javascript:;" data-url="/user/2303/follow"style="display: none;"value="">关注</a>
+                <a class="btn btn-default unfollow-btn mrl" href="javascript:;" data-url="/user/2303/unfollow" style=""value="">已关注</a>
+                @endif
             </div>
         </div>
         <div class="user-about hidden-sm hidden-xs">
@@ -334,7 +297,7 @@
                                     </div>
                                     <div class="course-info">
                                         <div class="title">
-                                            <a class="link-dark" href="#" target="_blank">
+                                            <a class="link-dark" href="" target="_blank">
                                                 {{$courses->name}}
                                             </a>
                                         </div>
@@ -390,7 +353,6 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">登录</h4>
             </div>
-            <span class="error"style="display: none"></span>
             <div class="modal-body">
                 <div class="form-group">
                     <label for="txt_departmentname">账号</label>
@@ -407,7 +369,10 @@
         </div>
     </div>
 </div>
+@endsection
 </body>
+@section('javascript')
+<script src="{{asset('/js/jquery.pwstabs.js')}}"></script>
 <script type="text/javascript">
     jQuery(function($){"display","none"
         $('.course-detail-main-div').pwstabs({
@@ -421,8 +386,10 @@
             $(this).next().show();
             $(this).hide();
             var name=$('#teacherid').val();
-            $.post('{{url('teacherdisplay/studentsteachers')}}',{name:name},function () {
-
+            $.post('{{url('teacherdisplay/studentsteachers')}}',{name:name},function (data) {
+                if (data == 1){
+                    window.history.go(0);
+                }
             });
         @else
             $('#myModal').modal();
@@ -432,9 +399,8 @@
                 var name=$('#teacherid').val();
                 $.post('{{url('teacherdisplay/teacherLogin')}}',{email:username,password:password,name:name},function (data) {
                     if(data==0){
-                        $('.error').style('display',block).text("用户名或密码错误").css('color','red');
+                        alert('用户名或密码错误');
                     }else if (data==1){
-                        alert('1');
                         window.history.go(0);
                     }
                 });
@@ -447,10 +413,14 @@
         $(this).hide();
         $(this).prev().show();
         var name=$('#teacherid').val();
-        $.post('{{url('teacherdisplay/teachersstudents')}}',{name:name},function () {
+        $.post('{{url('teacherdisplay/teachersstudents')}}',{name:name},function (data) {
+            if(data == 1){
+                window.history.go(0);
+            }
         });
 
     });
 </script>
+@endsection
 
 
